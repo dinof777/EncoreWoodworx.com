@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# markdown / agent guidance files — kept private
+*.md
+
+# editor + os cruft
+.idea/
+.vscode/
+*.swp
+*~
+*.bak
+.DS_Store
+
+# scratch + caches
+/tmp/
+*.log
+
+# any local secrets backups
+*.secret
+*-secret.*

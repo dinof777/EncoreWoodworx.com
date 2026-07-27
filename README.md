@@ -27,11 +27,16 @@ npm run lint
 
 ### Environment
 
-Copy the key below into `.env.local`. Nothing here is secret — the site reads only the
-shop's public RSS feed, not the Etsy API.
+Copy these into `.env.local`. The Etsy key is not secret — the site reads only the shop's
+public RSS feed, not the Etsy API. The intake pair *is* a credential.
 
 ```
 ETSY_SHOP_NAME=florabrofurnishings
+
+# Form intake — see scripts/apps-script/Code.gs for how to deploy and obtain these.
+# Without them the contact and newsletter forms report failure rather than delivering.
+APPS_SCRIPT_INTAKE_URL=
+APPS_SCRIPT_INTAKE_SECRET=
 ```
 
 ## Documentation
@@ -54,7 +59,9 @@ app/
   llms.txt/      AI-crawler manifest, computed from the same modules as the pages
   sitemap.ts     robots.ts
 components/      Nav, Footer, Section primitives, the project-basket flow, forms
-lib/             etsy.ts (RSS mirror) · blog.ts (JSON posts)
+lib/             etsy.ts (RSS mirror) · blog.ts (JSON posts) · intake.ts (form delivery)
+scripts/
+  apps-script/   Code.gs — the Google Apps Script that receives form submissions
 styles/
   tokens/        design tokens — fonts, colors, typography, spacing, effects
   base.css       element defaults        -> @layer base

@@ -40,7 +40,8 @@ the V1/V2/V3 pill, but only on `/preview*` paths. Excluded from indexing via
 | `/llms.txt` | `app/llms.txt/route.ts` | AI-crawler manifest. Computes catalogue counts and the shop-tips index from `lib/etsy` + `lib/blog`, so it cannot drift from the pages. |
 | `/sitemap.xml` | `app/sitemap.ts` | Static routes + every listing slug + every post. |
 | `/robots.txt` | `app/robots.ts` | Allows all, disallows `/preview/`, points at the sitemap. |
-| `/api/contact` | `app/api/contact/route.ts` | `POST` inquiry handler. |
+| `/api/contact` | `app/api/contact/route.ts` | `POST` project inquiry → Apps Script intake. |
+| `/api/newsletter` | `app/api/newsletter/route.ts` | `POST` newsletter signup → Apps Script intake. |
 
 ---
 
@@ -91,17 +92,32 @@ basket is only serialized when the inquiry form posts it.
 | **Checkout** | Entirely off-site. Every purchase path terminates at Etsy. There is no cart, no payment code, and no PCI surface in this repo. |
 | **Photography** | Hot-linked from Etsy's CDN (`i.etsystatic.com`, allow-listed in `next.config.ts`). No owned image assets yet. |
 | **Gallery** | An external Google Photos album, linked from the homepage and contact page. |
-| **Email / CRM** | Not yet wired — see `/api/contact` below. |
+| **Email / CRM** | Google Apps Script web app writing to a Sheet + emailing a notification. See below. |
 
-### `/api/contact` — delivery transport not yet wired
+### Form intake — `/api/contact` and `/api/newsletter`
 
-The handler validates and accepts the payload, but the outbound transport is still
-to be chosen. Wiring one (Resend for email, optionally a Marketplace database for a
-durable record) is the highest-priority item on this site — see the tracker rather
-than this file for current status.
+Both post to a **Google Apps Script web app** (`scripts/apps-script/Code.gs`), deployed
+from the Google Sheet it writes to. It appends a row to a per-type tab and emails a
+notification. Setup steps are in the script's own header comment.
 
-Validation the handler enforces: email format, `name` ≤ 200 chars, `message` ≤ 5000,
-`basket` ≤ 50 entries, and a rejection when both message and basket are empty.
+```
+APPS_SCRIPT_INTAKE_URL      the web app's /exec URL
+APPS_SCRIPT_INTAKE_SECRET   shared secret, must match SHARED_SECRET in the script
+```
+
+Unset, both routes report it rather than pretending: `/api/contact` answers 502 and tells
+the visitor to email directly, `/api/newsletter` answers 503 and the form says the list
+isn't open yet. **Neither route may ever return ok for a delivery that did not happen** —
+that was the original bug and it silently lost leads.
+
+*Why not a Google Form?* Posting to a form's `/formResponse` endpoint is the usual trick
+and it no longer works: two separately created, publicly viewable forms both returned 400
+to every submission, including a byte-identical browser replay with fresh `fbzx`, cookies,
+user-agent and referer. Google blocks programmatic submission. Apps Script web apps are a
+supported POST target.
+
+Validation before anything is delivered: email format, `name` ≤ 200 chars, `message` ≤
+5000, `basket` ≤ 50 entries, and a rejection when both message and basket are empty.
 
 ---
 
@@ -152,7 +168,8 @@ why the desktop nav switches on at `lg` rather than `md`. Layout is verified cle
 
 ## Roadmap
 
-1. Wire the `/api/contact` delivery transport (above) — highest priority.
+1. Deploy the Apps Script intake and set its two env vars — until then both forms
+   report failure honestly but deliver nothing.
 2. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
    `filter: invert(1)` and it muddies below ~48px.
 3. Owned workshop photography. Everything still comes from Etsy's CDN. `lib/etsy.ts`

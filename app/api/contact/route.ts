@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { submitToGoogleForm } from "@/lib/google-form";
-import { PROJECT_FORM, buildProjectDetails } from "@/lib/forms";
+import { deliverIntake, renderBasket, INTAKE_NOT_CONFIGURED } from "@/lib/intake";
 
 type BasketEntry = {
   id?: string;
@@ -40,13 +39,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Tell me a little about your project" }, { status: 400 });
   }
 
-  const result = await submitToGoogleForm(PROJECT_FORM, {
-    name: name || "(not given)",
+  const result = await deliverIntake({
+    type: "project",
+    name,
     email,
-    details: buildProjectDetails(message, basket),
+    message,
+    basket: renderBasket(basket),
+    source: basket.length > 0 ? "/basket" : "/contact",
   });
 
   if (!result.ok) {
+    if (result.reason === INTAKE_NOT_CONFIGURED) {
+      console.error("[contact] intake not configured — set APPS_SCRIPT_INTAKE_URL/SECRET");
+    }
     // Never report success we did not achieve — the visitor would walk away believing
     // the inquiry was sent. Log enough to diagnose, and tell them to email directly.
     console.error("[contact] delivery failed", {

@@ -111,7 +111,7 @@ export default async function ShopTipsPage() {
                   >
                     <div
                       className="relative aspect-[4/3]"
-                      style={{ background: "#e8dec9" }}
+                      style={{ background: "var(--surface-media)" }}
                     >
                       {p.cover && (
                         <Image
@@ -146,12 +146,12 @@ export default async function ShopTipsPage() {
       <Section className="!pt-0">
         <div className="rounded-3xl bg-[color:var(--accent-deep)] text-[color:var(--surface)] p-12 md:p-16 grid md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-8">
-            <Eyebrow>Have a question we didn&rsquo;t answer?</Eyebrow>
+            <Eyebrow>Have a question I didn&rsquo;t answer?</Eyebrow>
             <h2 className="font-display text-4xl md:text-5xl mt-3 leading-[1.05]">
-              Ask us. We answer every email.
+              Ask me. I answer every email.
             </h2>
             <p className="mt-4 max-w-xl text-[color:var(--surface)]/85">
-              Refinishing tips, repair questions, what oil to buy at the hardware store — drop us a
+              Refinishing tips, repair questions, what oil to buy at the hardware store — drop me a
               line.
             </p>
           </div>

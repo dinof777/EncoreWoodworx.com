@@ -152,7 +152,7 @@ export default async function PostPage({
                   href={`/shop-tips/${p.slug}`}
                   className="group block rounded-2xl overflow-hidden bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--accent)] transition-all"
                 >
-                  <div className="relative aspect-[4/3]" style={{ background: "#e8dec9" }}>
+                  <div className="relative aspect-[4/3]" style={{ background: "var(--surface-media)" }}>
                     {p.cover && (
                       <Image
                         src={p.cover}

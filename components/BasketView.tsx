@@ -22,7 +22,7 @@ export function BasketView() {
         <h2 className="font-display text-3xl">Your project is empty.</h2>
         <p className="mt-4 text-[color:var(--muted)]">
           Browse the shop and add custom pieces — tables, desks, doors, anything that needs a
-          conversation. We&apos;ll quote the whole project at once.
+          conversation. I&apos;ll quote the whole project at once.
         </p>
         <Link href="/shop" className="btn btn-primary mt-8">
           Browse the shop →
@@ -47,7 +47,7 @@ export function BasketView() {
             <Link
               href={`/shop/${item.slug}`}
               className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0"
-              style={{ background: "#e8dec9" }}
+              style={{ background: "var(--surface-media)" }}
             >
               {item.imageUrl && (
                 <Image
@@ -88,16 +88,16 @@ export function BasketView() {
         ))}
         <p className="mt-6 text-sm text-[color:var(--muted)]">
           Prices shown are starting points for each made-to-order piece. Final quote depends on
-          wood species, dimensions, and finish — we&apos;ll confirm everything in our reply.
+          wood species, dimensions, and finish — I&apos;ll confirm everything in my reply.
         </p>
       </div>
 
       <div className="lg:col-span-5 lg:sticky lg:top-28">
         <div className="rounded-3xl bg-[color:var(--surface)] border border-[color:var(--border)] p-7 md:p-8 shadow-sm">
-          <p className="eyebrow">Send to the brothers</p>
+          <p className="eyebrow">Send to the shop</p>
           <h3 className="font-display text-2xl mt-2">Tell us about the project</h3>
           <p className="mt-2 text-sm text-[color:var(--muted)]">
-            We typically reply within one business day.
+            I typically reply within one business day.
           </p>
           <div className="mt-6">
             <BasketInquiryForm items={items} />

@@ -1,0 +1,26 @@
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;   /* card padding, p-7 */
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;     /* section padding, mobile */
+  --space-24: 6rem;
+  --space-28: 7rem;     /* section padding, md+ */
+
+  --container-max: 80rem;      /* max-w-7xl */
+  --container-pad: 1.5rem;     /* px-6 */
+  --container-pad-lg: 2.5rem;  /* lg:px-10 */
+  --measure: 42rem;            /* max-w-2xl — prose measure */
+
+  --section-y: 5rem;
+  --section-y-lg: 7rem;
+  --grid-gap: 1.5rem;
+}

@@ -11,9 +11,12 @@ export function Footer() {
             <Image src="/logo.png" alt="Encore Woodworx" width={72} height={49} className="h-12 w-auto" />
             <span className="font-display text-2xl">Encore Woodworx</span>
           </div>
+          <p className="mt-5 pl-4 border-l-2 border-[color:var(--accent)] font-display italic text-xl leading-snug">
+            When your roots are deep, there is no reason to fear the wind.
+          </p>
           <p className="mt-4 text-sm leading-relaxed text-[color:var(--muted)]">
-            A creative collaboration of five brothers — blacksmithing to fine carpentry. If
-            you can dream it, we&apos;ll build it.
+            One shop, one pair of hands — blacksmithing to fine carpentry. If you can dream
+            it, I&apos;ll build it.
           </p>
           <div className="mt-5 flex items-center gap-3">
             <a

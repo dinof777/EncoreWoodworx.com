@@ -166,7 +166,7 @@ export default async function LiveBlendedPage() {
                 <span className="!text-[color:var(--accent-soft)]">Back to the shop</span>
               </Eyebrow>
               <h2 className="font-display text-4xl md:text-5xl mt-3 leading-[1.05]">
-                And that&rsquo;s why there are tees in our wood shop.
+                And that&rsquo;s why there are tees in my wood shop.
               </h2>
             </div>
             <p className="md:col-span-5 text-[color:var(--surface)]/85 leading-relaxed">

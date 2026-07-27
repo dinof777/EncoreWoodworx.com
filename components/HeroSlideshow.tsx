@@ -46,19 +46,19 @@ export function HeroSlideshow({ images, intervalMs = 5000 }: Props) {
       </AnimatePresence>
 
       {/* Wood-tinted darken overlay so the type stays readable on any photo */}
-      <div className="absolute inset-0 bg-[color:var(--foreground)]/60" />
+      <div className="absolute inset-0 bg-[color:var(--foreground)]/62" />
       <div
         className="absolute inset-0 opacity-50"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 30%, rgba(214,168,106,0.35), transparent 55%), radial-gradient(circle at 75% 75%, rgba(168,90,31,0.35), transparent 55%), linear-gradient(140deg, rgba(34,23,16,0.55), rgba(34,23,16,0.0) 60%, rgba(34,23,16,0.7))",
+            "radial-gradient(circle at 20% 30%, rgba(201,180,140,0.35), transparent 55%), radial-gradient(circle at 75% 75%, rgba(168,122,53,0.35), transparent 55%), linear-gradient(140deg, rgba(26,24,21,0.55), rgba(26,24,21,0.0) 60%, rgba(26,24,21,0.7))",
         }}
       />
       <div
         className="absolute inset-0 opacity-15"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(105deg, rgba(255,250,240,0.07) 0 2px, transparent 2px 9px)",
+            "repeating-linear-gradient(105deg, rgba(250,248,243,0.07) 0 2px, transparent 2px 9px)",
         }}
       />
 

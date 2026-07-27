@@ -1,0 +1,8 @@
+/* Single entry point for the Encore Woodworx design tokens.
+   Order matters: fonts and colors are primitives; typography, spacing and effects
+   reference them. Documented in /DESIGN.md — keep the two in sync. */
+@import "./fonts.css";
+@import "./colors.css";
+@import "./typography.css";
+@import "./spacing.css";
+@import "./effects.css";

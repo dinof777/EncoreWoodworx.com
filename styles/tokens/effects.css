@@ -1,0 +1,37 @@
+:root {
+  /* radii — pill buttons, generously rounded cards, small inputs.
+     Named by role, never by t-shirt size: --radius-sm/--radius-md would shadow
+     Tailwind's own scale and silently change every `rounded-sm` / `rounded-md`. */
+  --radius-input: 0.5rem;
+  --radius-chip: 0.75rem;
+  --radius-card: 1rem;     /* rounded-2xl */
+  --radius-panel: 1.5rem;  /* rounded-3xl — banners, big feature cards */
+  --radius-pill: 9999px;
+
+  /* Shadows — soft, warm, never black.
+     These DELIBERATELY share Tailwind's --shadow-* names so every `shadow-sm`…`shadow-2xl`
+     in the markup picks up the warm ink colour instead of neutral black. */
+  --shadow-sm: 0 1px 2px 0 rgba(26, 24, 21, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(26, 24, 21, 0.08), 0 2px 4px -2px rgba(26, 24, 21, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 24, 21, 0.1), 0 4px 6px -4px rgba(26, 24, 21, 0.07);
+  --shadow-xl: 0 20px 25px -5px rgba(26, 24, 21, 0.12), 0 8px 10px -6px rgba(26, 24, 21, 0.08);
+  --shadow-2xl: 0 25px 50px -12px rgba(26, 24, 21, 0.22);
+  --ring-focus: 0 0 0 3px var(--focus-ring);
+
+  /* motion — one duration, one curve, everywhere */
+  --ease: ease;
+  --duration-fast: 200ms;
+  --duration-media: 700ms;      /* image zoom on hover */
+  --duration-crossfade: 1400ms;
+  --lift: translateY(-1px);
+  --media-zoom: scale(1.04);
+
+  /* texture + overlays */
+  --grain-dot-a: rgba(38, 35, 30, 0.06);
+  --grain-dot-b: rgba(26, 24, 21, 0.05);
+  --wood-gradient: linear-gradient(135deg, rgba(26, 24, 21, 0.85) 0%, rgba(168, 122, 53, 0.45) 60%, rgba(26, 24, 21, 0.9) 100%);
+  --glow-warm: radial-gradient(circle at 25% 30%, rgba(201, 180, 140, 0.55), transparent 55%);
+  --hatch: repeating-linear-gradient(115deg, rgba(250, 248, 243, 0.18) 0 1px, transparent 1px 16px);
+  --scrim-dark: rgba(26, 24, 21, 0.62);
+  --blur-nav: blur(12px);
+}

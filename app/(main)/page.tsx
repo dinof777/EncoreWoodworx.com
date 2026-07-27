@@ -44,17 +44,17 @@ const story = [
   {
     title: "Crafted Pieces",
     body:
-      "Encore Woodworx is a creative collaboration of five brothers with a wide range of skillsets — from blacksmithing to fine carpentry. If you can dream it up, we will create it for you. Epoxy tables, sliding barn doors, live-edge desks, countertops, organizational items… check out some of our past work or reach out for a custom job.",
+      "Encore Woodworx is a one-person shop with a wide range of skillsets — from blacksmithing to fine carpentry. If you can dream it up, I will create it for you. Epoxy tables, sliding barn doors, live-edge desks, countertops, organizational items… check out some of my past work or reach out for a custom job.",
   },
   {
     title: "Beyond a Store",
     body:
-      "We're makers first. The brothers are always on hand to talk through wood species, joinery, finishing schedules, and how to make a piece live in your space. We also offer custom design services specializing in farmhouse and coastal décor.",
+      "I'm a maker first. I'm always on hand to talk through wood species, joinery, finishing schedules, and how to make a piece live in your space. I also offer custom design services specializing in farmhouse and coastal décor.",
   },
   {
-    title: "Meet the Makers",
+    title: "Meet the Maker",
     body:
-      "We are makers and artists, just like you. Send us a picture of your finished project and feedback on how the materials worked for you — your work could be in our next gallery show.",
+      "I'm a maker and an artist, just like you. Send me a picture of your finished project and feedback on how the materials worked for you — your work could be in my next gallery show.",
   },
 ];
 
@@ -76,8 +76,8 @@ export default async function Home() {
             Unique handcrafted wooden furnishings for your home or business.
           </h1>
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-[color:var(--surface)]/80 leading-relaxed">
-            Five brothers. One workshop. Every piece milled, joined, and finished by
-            hand — built to be passed down.
+            One workshop. One pair of hands. Every piece milled, joined, and finished
+            by hand — built to be passed down.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link href="/shop" className="btn btn-primary">Shop Now</Link>
@@ -92,9 +92,12 @@ export default async function Home() {
           <div className="md:col-span-5">
             <SectionHeader
               eyebrow="Our Story"
-              title="A workshop run by five brothers."
-              intro="What started as helping each other with weekend projects became a shop where craft, family, and a little stubbornness about doing things right all live under one roof."
+              title="One shop, one pair of hands."
+              intro="What started as weekend projects became a shop where craft and a little stubbornness about doing things right live under one roof."
             />
+            <blockquote className="mt-8 pl-5 border-l-2 border-[color:var(--accent)] font-display italic text-2xl leading-snug">
+              When your roots are deep, there is no reason to fear the wind.
+            </blockquote>
             <Link href="/services" className="btn btn-ghost mt-8">Our Services</Link>
           </div>
           <div className="md:col-span-7 grid sm:grid-cols-1 gap-6">
@@ -116,21 +119,21 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-xl">
-              <p className="eyebrow !text-[color:var(--accent-soft)]">What We Make</p>
+              <p className="eyebrow !text-[color:var(--accent-soft)]">What I Make</p>
               <h2 className="font-display text-4xl md:text-5xl mt-3 leading-[1.05]">
-                If you can dream it, we&apos;ll build it.
+                If you can dream it, I&apos;ll build it.
               </h2>
             </div>
             <p className="max-w-md text-[color:var(--surface)]/75">
-              A short list of the pieces we make most often. Don&apos;t see yours?
-              That just means we haven&apos;t built it yet.
+              A short list of the pieces I make most often. Don&apos;t see yours?
+              That just means I haven&apos;t built it yet.
             </p>
           </div>
           <div className="mt-14 grid gap-px bg-[color:var(--surface)]/15 sm:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden">
             {crafts.map((c) => (
               <div
                 key={c.title}
-                className="bg-[color:var(--foreground)] p-8 hover:bg-[color:var(--accent-deep)]/30 transition-colors"
+                className="bg-[color:var(--foreground)] p-8 hover:bg-[color:var(--accent)]/25 transition-colors"
               >
                 <h3 className="font-display text-2xl text-[color:var(--accent-soft)]">
                   {c.title}
@@ -171,22 +174,22 @@ export default async function Home() {
               {
                 n: "01",
                 t: "Conversation",
-                d: "Tell us what you have in mind — a Pinterest board, a rough sketch, or just dimensions. We talk through wood, finish, and budget.",
+                d: "Tell us what you have in mind — a Pinterest board, a rough sketch, or just dimensions. We talk through wood, finish, and budget together.",
               },
               {
                 n: "02",
                 t: "Design & Quote",
-                d: "We draft the piece, pick the slab or stock, and send a fixed quote with timeline. No surprises later.",
+                d: "I draft the piece, pick the slab or stock, and send a fixed quote with timeline. No surprises later.",
               },
               {
                 n: "03",
                 t: "Build",
-                d: "Milling, joinery, finishing — done by hand in our shop. We share progress photos along the way.",
+                d: "Milling, joinery, finishing — done by hand in my shop. I share progress photos along the way.",
               },
               {
                 n: "04",
                 t: "Delivery & Install",
-                d: "We deliver locally and can install built-ins, doors, and railings. The piece is yours, finished and ready.",
+                d: "I deliver locally and can install built-ins, doors, and railings. The piece is yours, finished and ready.",
               },
             ].map((s) => (
               <li
@@ -212,7 +215,7 @@ export default async function Home() {
               className="absolute inset-0 opacity-20 -z-0"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(115deg, rgba(255,250,240,0.18) 0 1px, transparent 1px 16px)",
+                  "repeating-linear-gradient(115deg, rgba(250,248,243,0.18) 0 1px, transparent 1px 16px)",
               }}
             />
             <div className="relative">
@@ -244,7 +247,7 @@ export default async function Home() {
             <h3 className="font-display text-3xl mt-3">Bespoke wood &amp; steel work →</h3>
             <p className="mt-3 text-[color:var(--muted)] group-hover:text-[color:var(--surface)]/75">
               Tables, desks, doors, railings, lamps. If it can be made of wood (or wood
-              and steel), we&apos;ll make it.
+              and steel), I&apos;ll make it.
             </p>
           </Link>
           <Link

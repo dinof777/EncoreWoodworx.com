@@ -55,7 +55,7 @@ export function ContactForm() {
         </label>
       </div>
       <label className="block">
-        <span className="text-sm font-medium">Tell us about your project</span>
+        <span className="text-sm font-medium">Tell me about your project</span>
         <textarea
           required
           value={message}
@@ -71,7 +71,7 @@ export function ContactForm() {
         </button>
         {status === "ok" && (
           <p className="text-sm text-[color:var(--forest)]">
-            Got it — we&apos;ll be in touch shortly.
+            Got it — I&apos;ll be in touch shortly.
           </p>
         )}
         {status === "error" && (

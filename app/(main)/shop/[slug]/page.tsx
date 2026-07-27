@@ -68,7 +68,7 @@ export default async function ProductPage({
           <div className="lg:col-span-7">
             <div
               className="relative aspect-[4/3] rounded-2xl overflow-hidden"
-              style={{ background: "#e8dec9" }}
+              style={{ background: "var(--surface-media)" }}
             >
               {listing.imageUrl ? (
                 <Image
@@ -150,7 +150,7 @@ export default async function ProductPage({
                   </p>
                   <ul className="space-y-1 list-disc list-inside marker:text-[color:var(--accent)]">
                     <li>Add as many pieces as you&apos;re considering — no commitment</li>
-                    <li>Send the whole list as one inquiry; we reply with options &amp; a quote</li>
+                    <li>Send the whole list as one inquiry; I reply with options &amp; a quote</li>
                     <li>Final order goes through Etsy for secure checkout &amp; buyer protection</li>
                   </ul>
                 </>
@@ -203,7 +203,7 @@ export default async function ProductPage({
                   href={`/shop/${p.slug}`}
                   className="group block rounded-2xl overflow-hidden bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--accent)] transition-all"
                 >
-                  <div className="relative aspect-square" style={{ background: "#e8dec9" }}>
+                  <div className="relative aspect-square" style={{ background: "var(--surface-media)" }}>
                     {p.imageUrl ? (
                       <Image
                         src={p.imageUrl}

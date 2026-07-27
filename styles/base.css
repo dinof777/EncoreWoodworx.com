@@ -1,0 +1,26 @@
+/* Element defaults. Tokens only — no literal values. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--surface-page);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    font-size: var(--text-body-size);
+    line-height: var(--leading-body);
+    font-feature-settings: var(--font-features);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: var(--text-link);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--text-link-hover);
+  }
+}

@@ -1,0 +1,105 @@
+/* Reusable component classes, in Tailwind's `components` layer so utility classes
+   written alongside them (`btn btn-ghost text-xs`, `input flex-1`) still win. */
+@layer components {
+  /* --- brand primitives --- */
+
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    letter-spacing: var(--tracking-display);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--text-eyebrow);
+    margin: 0;
+  }
+
+  /* Warm paper texture — the default page background for editorial surfaces */
+  .grain {
+    background-color: var(--surface-page);
+    background-image:
+      radial-gradient(var(--grain-dot-a) 1px, transparent 1px),
+      radial-gradient(var(--grain-dot-b) 1px, transparent 1px);
+    background-size: 22px 22px, 38px 38px;
+    background-position: 0 0, 11px 19px;
+  }
+
+  .wood-gradient {
+    background: var(--wood-gradient);
+  }
+
+  /* --- buttons --- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    /* off-scale on purpose: the pill needs more horizontal than vertical air */
+    padding: 0.85rem 1.6rem;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-button);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      transform var(--duration-fast) var(--ease),
+      background-color var(--duration-fast) var(--ease),
+      color var(--duration-fast) var(--ease),
+      border-color var(--duration-fast) var(--ease);
+  }
+
+  .btn-primary {
+    background: var(--action-primary);
+    color: var(--action-primary-text);
+  }
+  .btn-primary:hover {
+    background: var(--action-primary-hover);
+    transform: var(--lift);
+  }
+
+  .btn-ghost {
+    border-color: var(--border-strong);
+    color: var(--text-strong);
+  }
+  .btn-ghost:hover {
+    background: var(--surface-dark);
+    color: var(--text-inverse);
+  }
+
+  .btn-light {
+    border-color: var(--border-on-dark);
+    color: var(--text-inverse);
+  }
+  .btn-light:hover {
+    background: var(--surface-card);
+    color: var(--text-strong);
+  }
+
+  /* --- form controls --- */
+
+  .input {
+    width: 100%;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-input);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-body);
+    transition:
+      border-color var(--duration-fast) var(--ease),
+      box-shadow var(--duration-fast) var(--ease);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--ring-focus);
+  }
+}

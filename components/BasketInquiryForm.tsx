@@ -45,7 +45,7 @@ export function BasketInquiryForm({ items }: { items: BasketItem[] }) {
           Got it — your project is on its way to the shop.
         </h3>
         <p className="mt-3 text-[color:var(--muted)]">
-          We&apos;ll reply within one business day with options, a quote, and a timeline.
+          I&apos;ll reply within one business day with options, a quote, and a timeline.
           Your basket has been cleared.
         </p>
       </div>
@@ -81,7 +81,7 @@ export function BasketInquiryForm({ items }: { items: BasketItem[] }) {
       </div>
       <label className="block">
         <span className="text-sm font-medium">
-          Notes for the brothers <span className="text-[color:var(--muted)]">(optional)</span>
+          Notes for the shop <span className="text-[color:var(--muted)]">(optional)</span>
         </span>
         <textarea
           value={notes}
@@ -104,7 +104,7 @@ export function BasketInquiryForm({ items }: { items: BasketItem[] }) {
         )}
       </div>
       <p className="text-xs text-[color:var(--muted)]">
-        We&apos;ll reply with options and a quote. Final order goes through Etsy for secure
+        I&apos;ll reply with options and a quote. Final order goes through Etsy for secure
         checkout and buyer protection.
       </p>
     </form>

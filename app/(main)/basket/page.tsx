@@ -4,7 +4,7 @@ import { BasketView } from "@/components/BasketView";
 export const metadata = {
   title: "Your Project — Encore Woodworx",
   description:
-    "Review the custom pieces you're considering. Send the whole project to the brothers as one inquiry.",
+    "Review the custom pieces you're considering. Send the whole project to the shop as one inquiry.",
 };
 
 export default function BasketPage() {
@@ -25,7 +25,7 @@ export default function BasketPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[color:var(--surface)]/80 leading-relaxed">
             Custom pieces are quoted together — wood, dimensions, and finish all get cleaner
-            answers when we see the whole project at once.
+            answers when I see the whole project at once.
           </p>
         </div>
       </section>
@@ -47,12 +47,12 @@ export default function BasketPage() {
               {
                 n: "02",
                 t: "We quote together",
-                d: "Send your project. We come back with a tailored quote — wood, dimensions, finish, lead time.",
+                d: "Send your project. I come back with a tailored quote — wood, dimensions, finish, lead time.",
               },
               {
                 n: "03",
                 t: "Order through Etsy",
-                d: "Once the details are settled, we send a custom Etsy invoice. Secure checkout, buyer protection, tracked shipping.",
+                d: "Once the details are settled, I send a custom Etsy invoice. Secure checkout, buyer protection, tracked shipping.",
               },
             ].map((s) => (
               <div key={s.n}>

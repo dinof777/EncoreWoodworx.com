@@ -128,7 +128,7 @@ export default function EditorialPreview() {
           >
             <div className="md:col-span-3">
               <p className="text-xs uppercase tracking-[0.3em] opacity-60 leading-relaxed">
-                Florida · Five Brothers · Est. with stubborn intent
+                Florida · One Maker · Est. with stubborn intent
               </p>
             </div>
             <p
@@ -141,9 +141,9 @@ export default function EditorialPreview() {
               }}
             >
               <span style={{ color: "#cc6f4a", fontWeight: 600 }}>Encore Woodworx</span> is a
-              creative collaboration of five brothers — blacksmiths and carpenters — making
-              one-of-a-kind pieces that are meant to outlast us. Epoxy river tables. Live-edge
-              desks. Sliding barn doors. If you can dream it up, we&rsquo;ll build it.
+              one-person shop — blacksmith and carpenter — making
+              one-of-a-kind pieces that are meant to outlast me. Epoxy river tables. Live-edge
+              desks. Sliding barn doors. If you can dream it up, I&rsquo;ll build it.
             </p>
           </motion.div>
         </div>
@@ -286,12 +286,12 @@ export default function EditorialPreview() {
         </div>
       </section>
 
-      {/* CTA — letter from the brothers */}
+      {/* CTA — letter from the maker */}
       <section className="max-w-[1400px] mx-auto px-8 py-24 md:py-32">
         <div className="grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-3">
             <p className="text-xs uppercase tracking-[0.3em] opacity-60">
-              A note from the brothers
+              A note from the maker
             </p>
           </div>
           <div className="md:col-span-7 md:col-start-5">

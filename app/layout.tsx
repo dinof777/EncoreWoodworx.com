@@ -26,7 +26,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Encore Woodworx — Handcrafted Wooden Furnishings",
   description:
-    "Five brothers, one shop. Bespoke epoxy tables, live-edge furniture, sliding barn doors, custom countertops and more — handcrafted for your home or business.",
+    "One shop, one pair of hands. Bespoke epoxy tables, live-edge furniture, sliding barn doors, custom countertops and more — handcrafted for your home or business.",
   openGraph: {
     title: "Encore Woodworx — Handcrafted Wooden Furnishings",
     description:

@@ -32,7 +32,7 @@ export default async function ShopPage() {
             In the workshop right now.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[color:var(--surface)]/80 leading-relaxed">
-            Every piece is hand-built in our workshop. Browse the current catalogue below — click
+            Every piece is hand-built in my workshop. Browse the current catalogue below — click
             through any piece for the full story.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
@@ -102,7 +102,7 @@ function ProductCard({ p, muted = false }: { p: EtsyListing; muted?: boolean }) 
     >
       <div
         className="relative aspect-square overflow-hidden"
-        style={{ background: "#e8dec9" }}
+        style={{ background: "var(--surface-media)" }}
       >
         {p.imageUrl ? (
           <Image
@@ -144,11 +144,11 @@ function EmptyState() {
     <div className="text-center py-20 max-w-xl mx-auto">
       <h2 className="font-display text-3xl">The shop is between drops.</h2>
       <p className="mt-4 text-[color:var(--muted)]">
-        We couldn&apos;t load the catalogue right now. Tell us what you&apos;re looking for and
-        we&apos;ll come back with options — every piece is made to order anyway.
+        I couldn&apos;t load the catalogue right now. Tell me what you&apos;re looking for and
+        I&apos;ll come back with options — every piece is made to order anyway.
       </p>
       <Link href="/contact" className="btn btn-primary mt-8">
-        Tell us what you&apos;re after →
+        Tell me what you&apos;re after →
       </Link>
     </div>
   );

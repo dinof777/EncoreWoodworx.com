@@ -29,7 +29,7 @@ export function Nav() {
               Encore Woodworx
             </span>
             <span className="text-[10px] tracking-[0.25em] uppercase text-[color:var(--muted)]">
-              Handcrafted · &amp; · Bespoke
+              Handcrafted, One Piece at a Time
             </span>
           </span>
         </Link>

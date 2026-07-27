@@ -98,7 +98,7 @@ export default function ScandiPreview() {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="mt-8 max-w-2xl text-lg md:text-xl leading-relaxed opacity-75"
           >
-            Five brothers. One workshop. Custom epoxy tables, live-edge desks, sliding barn doors,
+            One workshop. One pair of hands. Custom epoxy tables, live-edge desks, sliding barn doors,
             and built-ins — handcrafted, gently finished, built to last.
           </motion.p>
           <motion.div
@@ -131,7 +131,7 @@ export default function ScandiPreview() {
             className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             {[
-              { v: "5", l: "Brothers" },
+              { v: "1", l: "Maker" },
               { v: "100+", l: "Custom pieces" },
               { v: "1–2 wks", l: "Typical lead time" },
               { v: "★ 4.9", l: "Etsy rating" },
@@ -285,15 +285,15 @@ export default function ScandiPreview() {
               className="text-4xl md:text-5xl tracking-tight mb-6"
               style={{ fontWeight: 600, letterSpacing: "-0.02em" }}
             >
-              A workshop run by five brothers.
+              One shop, one pair of hands.
             </h2>
             <p className="text-lg opacity-75 leading-relaxed max-w-xl">
-              What started as helping each other with weekend projects became a shop where craft,
-              family, and a stubborn streak about doing things right all live under one roof.
+              What started as weekend projects became a shop where craft and a stubborn streak
+              about doing things right live under one roof.
             </p>
             <p className="mt-4 text-lg opacity-75 leading-relaxed max-w-xl">
-              We mill our own slabs, forge our own hardware, and finish every piece by hand. The
-              brothers are always available to talk through wood, joinery, and how a piece will live
+              I mill my own slabs, forge my own hardware, and finish every piece by hand. I&rsquo;m
+              always available to talk through wood, joinery, and how a piece will live
               in your space.
             </p>
           </div>

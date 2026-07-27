@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 export const metadata = {
   title: "Contact — Encore Woodworx",
   description:
-    "Have an idea for a custom piece? Tell us about it. The brothers answer every message.",
+    "Have an idea for a custom piece? Tell me about it. I answer every message.",
 };
 
 export default function ContactPage() {
@@ -22,11 +22,11 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 md:py-28 relative">
           <p className="eyebrow !text-[color:var(--accent-soft)]">Get in touch</p>
           <h1 className="font-display text-5xl md:text-7xl mt-4 max-w-3xl leading-[1.02]">
-            Tell us what you have in mind.
+            Tell me what you have in mind.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[color:var(--surface)]/80 leading-relaxed">
-            Sketch, Pinterest board, or three sentences. We&rsquo;ll come back with wood options, a
-            quote, and a timeline. The brothers answer every message.
+            Sketch, Pinterest board, or three sentences. I&rsquo;ll come back with wood options, a
+            quote, and a timeline. I answer every message.
           </p>
         </div>
       </section>
@@ -38,7 +38,7 @@ export default function ContactPage() {
               <Eyebrow>Project inquiry</Eyebrow>
               <h2 className="font-display text-3xl mt-2">Send us a note</h2>
               <p className="mt-3 text-[color:var(--muted)] text-sm">
-                We typically reply within one business day.
+                I typically reply within one business day.
               </p>
               <div className="mt-8">
                 <ContactForm />
@@ -66,16 +66,16 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <Eyebrow>Where we are</Eyebrow>
+              <Eyebrow>Where I am</Eyebrow>
               <p className="mt-4 text-[color:var(--foreground)] leading-relaxed">
                 Fort Lauderdale, Florida.
                 <br />
-                We deliver locally and ship anywhere in the US through Etsy.
+                I deliver locally and ship anywhere in the US through Etsy.
               </p>
             </div>
 
             <div>
-              <Eyebrow>Find us elsewhere</Eyebrow>
+              <Eyebrow>Find me elsewhere</Eyebrow>
               <ul className="mt-4 space-y-2 text-[color:var(--foreground)]">
                 <li>
                   <a

@@ -1,0 +1,10 @@
+/* Font stacks.
+   The families themselves are loaded by next/font/google in app/layout.tsx, which sets
+   --font-inter, --font-cormorant and --font-fraunces on <html>. Never @import them from the
+   Google Fonts CDN here — that would double-load the faces and add a render-blocking request.
+   This file only names the roles and supplies the fallback chains. */
+:root {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-accent: var(--font-fraunces), ui-serif, Georgia, serif;
+}

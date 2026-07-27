@@ -61,9 +61,9 @@ export default function Services() {
             Bespoke wooden creations, made for the way you live.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[color:var(--surface)]/80 leading-relaxed">
-            There are very few things we won&apos;t take on. If you have an idea you want
-            to bring to life, we&apos;d love to help. Custom tables, desks, wood or steel
-            stair railings, epoxy river tables, live-edge furniture, lamps — give us a
+            There are very few things I won&apos;t take on. If you have an idea you want
+            to bring to life, I&apos;d love to help. Custom tables, desks, wood or steel
+            stair railings, epoxy river tables, live-edge furniture, lamps — give me a
             call to talk through what you&apos;re thinking.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
@@ -82,9 +82,9 @@ export default function Services() {
 
       <Section>
         <SectionHeader
-          eyebrow="What We Build"
-          title="Eight things we do most — and a hundred we don&rsquo;t list."
-          intro="Every project is a conversation. Start with one of these or bring us something we've never tried."
+          eyebrow="What I Build"
+          title="Eight things I do most — and a hundred I don&rsquo;t list."
+          intro="Every project is a conversation. Start with one of these or bring me something I've never tried."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -111,8 +111,8 @@ export default function Services() {
               Have an idea? Let&apos;s sketch it out.
             </h2>
             <p className="mt-4 max-w-xl text-[color:var(--surface)]/85">
-              Send us a few details — wood, dimensions, where it&apos;ll live — and
-              we&apos;ll come back with options and a quote.
+              Send me a few details — wood, dimensions, where it&apos;ll live — and
+              I&apos;ll come back with options and a quote.
             </p>
           </div>
           <div className="md:col-span-4 flex md:justify-end">

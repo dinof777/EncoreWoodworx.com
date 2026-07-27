@@ -1,0 +1,48 @@
+/* Encore Woodworx palette — "Kraft & Chalk".
+   A near-monochrome system: a saturated kraft-paper page, chalk-white cards floating on it,
+   near-black char ink and panels, and one oak-tan action colour doing all the work. */
+:root {
+  /* warm paper + wood */
+  --background: #ded2bd;
+  --foreground: #1a1815;
+  --muted: #615a4d;
+  --surface: #faf8f3;
+  --border: #c6b99f;
+
+  /* wood-tone accents */
+  --accent: #a87a35;
+  --accent-deep: #26231e;
+  --accent-soft: #c9b48c;
+
+  /* single cool counterpoint, used for success/positive copy */
+  --forest: #3a4a3a;
+
+  /* image / slab placeholder fill used behind photography */
+  --slab: #d0c3ab;
+
+  /* semantic aliases */
+  --text-body: var(--foreground);
+  --text-strong: var(--foreground);
+  --text-muted: var(--muted);
+  --text-eyebrow: var(--accent-deep);
+  --text-inverse: var(--surface);
+  --text-link: var(--accent);
+  --text-link-hover: var(--accent-deep);
+  --text-success: var(--forest);
+  --text-error: #b91c1c;
+
+  --surface-page: var(--background);
+  --surface-card: var(--surface);
+  --surface-dark: var(--foreground);
+  --surface-brand: var(--accent-deep);
+  --surface-media: var(--slab);
+
+  --border-subtle: var(--border);
+  --border-strong: var(--foreground);
+  --border-on-dark: rgba(250, 248, 243, 0.3);
+
+  --action-primary: var(--accent);
+  --action-primary-hover: var(--accent-deep);
+  --action-primary-text: #faf8f3;
+  --focus-ring: rgba(168, 122, 53, 0.2);
+}

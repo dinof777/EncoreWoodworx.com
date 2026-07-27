@@ -109,8 +109,8 @@ Validation the handler enforces: email format, `name` ≤ 200 chars, `message` �
 
 | Module | Role |
 |---|---|
-| `components/Nav.tsx` | Sticky header, lockup, desktop nav, basket count. Server component |
-| `components/MobileMenu.tsx` | The `md:hidden` dropdown. Client, because a `<details>` has no reason to close itself under client-side routing — it closes on tap, route change, Escape and outside tap |
+| `components/Nav.tsx` | Sticky header, lockup, desktop nav (lg+), basket count. Server component |
+| `components/MobileMenu.tsx` | The `lg:hidden` dropdown. Client, because a `<details>` has no reason to close itself under client-side routing — it closes on tap, route change, Escape and outside tap |
 | `components/Footer.tsx` | Motto (1 of its 2 sitewide placements), links, hours |
 | `components/Section.tsx` | `Section`, `SectionHeader`, `Eyebrow` — the page rhythm primitives |
 | `components/HeroSlideshow.tsx` | Crossfading homepage hero with the scrim + grain overlays |
@@ -130,6 +130,14 @@ Inter, Cormorant and Fraunces in `app/layout.tsx`), and never name a token after
 Tailwind scale you did not mean to replace — token files are unlayered and imported
 after Tailwind, so they silently win.
 
+### Verifying responsive behaviour
+
+Browser-extension tooling resizes the window without changing the CSS viewport, so it
+cannot check breakpoints. Drive Chrome over CDP with `Emulation.setDeviceMetricsOverride`
+instead — that is what caught the header overflowing by 11px at exactly 768px, which is
+why the desktop nav switches on at `lg` rather than `md`. Layout is verified clean at
+320 / 375 / 414 / 640 / 768 / 820 / 1024 / 1280.
+
 ## Conventions
 
 - Colours are consumed as `bg-[color:var(--token)]`, not via Tailwind colour
@@ -147,6 +155,7 @@ after Tailwind, so they silently win.
 1. Wire the `/api/contact` delivery transport (above) — highest priority.
 2. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
    `filter: invert(1)` and it muddies below ~48px.
-3. Owned workshop photography. Everything currently comes from Etsy's CDN, where the
-   RSS thumbnails are ~188px and upscale roughly 2× into the catalogue cards.
+3. Owned workshop photography. Everything still comes from Etsy's CDN. `lib/etsy.ts`
+   rewrites the feed's `il_570xN` variant to `il_1588xN` so the catalogue is no longer
+   upscaling, but the shop does not own a single image.
 4. Test coverage. There is none today.

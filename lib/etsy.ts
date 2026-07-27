@@ -81,9 +81,22 @@ function stripHtml(html: string): string {
     .trim();
 }
 
+/**
+ * Etsy's RSS embeds the 570px-wide variant, which upscales visibly in the catalogue
+ * cards (they render ~382 CSS px, so 764 device px at DPR 2). The size is just a token
+ * in the path, and Etsy serves several — swap in a variant large enough to stay sharp.
+ * next/image resizes down from this to whatever the layout actually needs, so the only
+ * cost is fetch bandwidth at build/revalidate time, not payload to the visitor.
+ */
+const ETSY_IMAGE_VARIANT = "il_1588xN";
+
+function upgradeEtsyImage(url: string): string {
+  return url.replace(/\/il_\d+x[N\d]+\./i, `/${ETSY_IMAGE_VARIANT}.`);
+}
+
 function firstImageUrl(html: string): string | null {
   const m = html.match(/<img[^>]+src="([^"]+)"/i);
-  return m ? m[1] : null;
+  return m ? upgradeEtsyImage(m[1]) : null;
 }
 
 function classify(title: string, description: string): ListingKind {

@@ -15,6 +15,10 @@ Commits under review: `735a83d`, `ec5ca9f`
 | `screenshots/review-shop-catalogue-desktop-1920.jpg` | Desktop 1920 | Catalogue grid, product cards, badges |
 | `screenshots/review-contact-form-desktop-1920.jpg` | Desktop 1920 | Form controls, link list, chalk panel |
 | `screenshots/review-contact-textarea-focus.jpg` | Desktop 1920 | Keyboard focus on textarea |
+| `screenshots/review-home-mobile-375.jpg` | Mobile 375×812 | Post-fix home, hamburger present, hero wrapping |
+| `screenshots/review-home-tablet-768.jpg` | Tablet 768×1024 | Post-fix tablet, full lockup + hamburger, no overflow |
+| `screenshots/review-shop-mobile-375.jpg` | Mobile 375×812 | Catalogue grid stacked |
+| `screenshots/review-contact-mobile-375.jpg` | Mobile 375×812 | Form controls at mobile width |
 
 All screenshots are from the **production build** (`next start`, port 3031), not the dev server — see "Method" below.
 
@@ -24,10 +28,13 @@ Verified by measurement, not eyeball: contrast ratios computed from the palette 
 WCAG relative-luminance formula; touch targets, heading order, alt text, form labels, landmarks
 and media-query counts read from the live DOM.
 
-**Not verified: tablet (768px) and mobile (375px).** The available browser tooling resizes the
-window but the page viewport stays at 1920, so no media query below `2xl` could be triggered.
-Every responsive finding below is from reading breakpoint classes in the markup, not from seeing
-it render. **This needs your eyes or a real device before shipping.**
+**Responsive was verified in a follow-up pass, and it found a bug.** The browser-extension
+tooling resizes the window without changing the CSS viewport — `innerWidth` stays pinned at 1920 —
+so it cannot exercise a breakpoint at all. Chrome's legacy `--window-size` headless flag is no
+better: it renders a wider layout and crops, which produced convincing but *false* screenshots of
+a broken mobile header. The reliable route is CDP `Emulation.setDeviceMetricsOverride`. Under it,
+layout is clean at 320 / 375 / 414 / 640 / 768 / 820 / 1024 / 1280 — with one genuine defect
+found at 768px, recorded below.
 
 One process note worth recording: the long-running dev server on :3030 was serving *stale CSS*
 (computed `--background` was still `#f8f3e8`) after a brief `git stash` during an unrelated lint
@@ -63,8 +70,19 @@ small text — so the page stays bright while the type became legible. `--text-l
 `--action-primary` now resolve to the ink; hover states were retargeted so no hover drops back
 below AA. Measured after: button label 6.98:1, links on kraft 4.96:1, links on chalk 6.98:1.
 
-**Still left for your decision:** Should-fix #4 (touch targets) and #5 (imagery) need product
-decisions, and the mobile/tablet gap in "Method" above is still unverified.
+**Also resolved:** Should-fix #4 (touch targets) and the code-side half of #5 (imagery).
+
+- Touch targets: 0 of ~26 interactive elements now fail WCAG 2.2 AA across all seven routes at
+  375px, down from 18. Note the correction — AA Target Size (2.5.8) is **24×24 CSS px**; the 44px
+  figure quoted in the original finding is the AAA / platform-HIG target. Two controls sit between
+  the two bars (slideshow dots at 24×44, one `/shop` link at 117×40) and clear AA comfortably.
+- Imagery: `lib/etsy.ts` now rewrites the feed's `il_570xN` to `il_1588xN`. Delivered resolution
+  went from 0.49× of the display box (a 2× upscale) to 1.10×. Owned photography is still the real
+  fix and remains on the roadmap.
+
+**New defect found and fixed during that pass:** at exactly 768px the desktop nav switched on but
+its contents needed 779px, so every page had 11px of horizontal overflow — a scrollbar on tablet,
+with the hamburger pushed off-screen. The nav now switches at `lg` instead of `md`.
 
 ## Must fix
 

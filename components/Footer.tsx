@@ -24,7 +24,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="w-9 h-9 rounded-full border border-[color:var(--border)] flex items-center justify-center hover:bg-[color:var(--accent)] hover:text-[color:var(--surface)] hover:border-[color:var(--accent)] transition-colors"
+              className="w-11 h-11 rounded-full border border-[color:var(--border)] flex items-center justify-center hover:bg-[color:var(--accent)] hover:text-[color:var(--surface)] hover:border-[color:var(--accent)] transition-colors"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.5V12H16l-.4 2.9h-2.2v7A10 10 0 0 0 22 12Z"/></svg>
             </a>
@@ -33,7 +33,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-9 h-9 rounded-full border border-[color:var(--border)] flex items-center justify-center hover:bg-[color:var(--accent)] hover:text-[color:var(--surface)] hover:border-[color:var(--accent)] transition-colors"
+              className="w-11 h-11 rounded-full border border-[color:var(--border)] flex items-center justify-center hover:bg-[color:var(--accent)] hover:text-[color:var(--surface)] hover:border-[color:var(--accent)] transition-colors"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
             </a>
@@ -42,12 +42,12 @@ export function Footer() {
 
         <div>
           <h3 className="eyebrow">Explore</h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/services">Services</Link></li>
-            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/shop">Shop</Link></li>
-            <li><a className="hover:text-[color:var(--accent-deep)]" href="https://photos.app.goo.gl/nanyeNbDvnaD7ujd7" target="_blank" rel="noopener noreferrer">Gallery</a></li>
-            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/shop-tips">Shop Tips</Link></li>
-            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/contact">Contact</Link></li>
+          <ul className="mt-3 text-sm">
+            <li><Link className="block py-3 hover:text-[color:var(--accent-deep)]" href="/services">Services</Link></li>
+            <li><Link className="block py-3 hover:text-[color:var(--accent-deep)]" href="/shop">Shop</Link></li>
+            <li><a className="block py-3 hover:text-[color:var(--accent-deep)]" href="https://photos.app.goo.gl/nanyeNbDvnaD7ujd7" target="_blank" rel="noopener noreferrer">Gallery</a></li>
+            <li><Link className="block py-3 hover:text-[color:var(--accent-deep)]" href="/shop-tips">Shop Tips</Link></li>
+            <li><Link className="block py-3 hover:text-[color:var(--accent-deep)]" href="/contact">Contact</Link></li>
           </ul>
         </div>
 

@@ -34,7 +34,7 @@ export function Nav() {
             </span>
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) =>
             l.external ? (
               <a
@@ -42,7 +42,7 @@ export function Nav() {
                 href={l.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-[color:var(--foreground)] hover:text-[color:var(--accent-ink)] transition-colors"
+                className="inline-flex items-center py-2.5 text-sm font-medium text-[color:var(--foreground)] hover:text-[color:var(--accent-ink)] transition-colors"
               >
                 {l.label}
               </a>
@@ -50,20 +50,20 @@ export function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm font-medium text-[color:var(--foreground)] hover:text-[color:var(--accent-ink)] transition-colors"
+                className="inline-flex items-center py-2.5 text-sm font-medium text-[color:var(--foreground)] hover:text-[color:var(--accent-ink)] transition-colors"
               >
                 {l.label}
               </Link>
             ),
           )}
         </nav>
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <BasketButton />
           <Link href="/contact" className="btn btn-primary">
             Start a Project
           </Link>
         </div>
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
           <BasketButton />
         </div>
         <MobileMenu links={links} />

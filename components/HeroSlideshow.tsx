@@ -64,16 +64,23 @@ export function HeroSlideshow({ images, intervalMs = 5000 }: Props) {
 
       {/* Bottom progress dots — only show if multiple images */}
       {safe.length > 1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
           {safe.map((_, j) => (
+            /* The visible pill is 6px tall — far too small to tap. The button carries a
+               44px-tall, ≥24px-wide hit area and the <span> carries the pill, so the
+               target grows without the dot growing. */
             <button
               key={j}
               onClick={() => setI(j)}
               aria-label={`Show image ${j + 1}`}
-              className={`h-1.5 rounded-full transition-all ${
-                j === i ? "w-8 bg-[color:var(--surface)]" : "w-2 bg-[color:var(--surface)]/40 hover:bg-[color:var(--surface)]/70"
-              }`}
-            />
+              className="flex items-center justify-center h-11 px-2"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all ${
+                  j === i ? "w-8 bg-[color:var(--surface)]" : "w-2 bg-[color:var(--surface)]/40 hover:bg-[color:var(--surface)]/70"
+                }`}
+              />
+            </button>
           ))}
         </div>
       )}

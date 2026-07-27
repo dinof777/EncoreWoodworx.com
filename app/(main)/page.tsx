@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Section, SectionHeader, Eyebrow } from "@/components/Section";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { HeroSlideshow } from "@/components/HeroSlideshow";

@@ -76,13 +76,13 @@ export default function ContactPage() {
 
             <div>
               <Eyebrow>Find me elsewhere</Eyebrow>
-              <ul className="mt-4 space-y-2 text-[color:var(--foreground)]">
+              <ul className="mt-3 text-[color:var(--foreground)]">
                 <li>
                   <a
                     href="https://florabrofurnishings.etsy.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[color:var(--accent-deep)] underline underline-offset-4"
+                    className="inline-block py-2.5 hover:text-[color:var(--accent-deep)] underline underline-offset-4"
                   >
                     Etsy → florabrofurnishings ↗
                   </a>
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     href="https://www.instagram.com/dinof777/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[color:var(--accent-deep)] underline underline-offset-4"
+                    className="inline-block py-2.5 hover:text-[color:var(--accent-deep)] underline underline-offset-4"
                   >
                     Instagram → @dinof777 ↗
                   </a>
@@ -102,7 +102,7 @@ export default function ContactPage() {
                     href="https://www.facebook.com/dino.flora"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[color:var(--accent-deep)] underline underline-offset-4"
+                    className="inline-block py-2.5 hover:text-[color:var(--accent-deep)] underline underline-offset-4"
                   >
                     Facebook → dino.flora ↗
                   </a>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                     href="https://photos.app.goo.gl/nanyeNbDvnaD7ujd7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[color:var(--accent-deep)] underline underline-offset-4"
+                    className="inline-block py-2.5 hover:text-[color:var(--accent-deep)] underline underline-offset-4"
                   >
                     Past work gallery ↗
                   </a>

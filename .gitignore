@@ -40,8 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# markdown / agent guidance files — kept private
+# markdown — private by default, so agent-guidance files (CLAUDE.md, AGENTS.md)
+# never ship in this public repo. Project documentation is opted back in below.
 *.md
+!DESIGN.md
+!SITE.md
+!.design/**/*.md
 
 # editor + os cruft
 .idea/

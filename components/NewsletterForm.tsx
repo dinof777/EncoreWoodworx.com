@@ -2,19 +2,51 @@
 
 import { useState } from "react";
 
+type Status = "idle" | "sending" | "ok" | "invalid" | "unavailable" | "error";
+
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "ok" | "error">("idle");
+  const [status, setStatus] = useState<Status>("idle");
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.match(/^\S+@\S+\.\S+$/)) {
-      setStatus("error");
+      setStatus("invalid");
       return;
     }
-    setStatus("ok");
-    setEmail("");
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("ok");
+        setEmail("");
+        return;
+      }
+      // 503 means no list exists yet. Tell the truth instead of claiming a signup.
+      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      setStatus(data?.error === "not_configured" ? "unavailable" : "error");
+    } catch {
+      setStatus("error");
+    }
   }
+
+  const message: Partial<Record<Status, { text: string; tone: string }>> = {
+    ok: { text: "Thanks — you're on the list.", tone: "text-[color:var(--forest)]" },
+    invalid: { text: "Please enter a valid email.", tone: "text-[color:var(--text-error)]" },
+    unavailable: {
+      text: "The makers list isn't open yet — check back soon.",
+      tone: "text-[color:var(--muted)]",
+    },
+    error: {
+      text: "Something went wrong. Please try again.",
+      tone: "text-[color:var(--text-error)]",
+    },
+  };
+  const note = message[status];
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
@@ -30,17 +62,15 @@ export function NewsletterForm() {
         className="input flex-1"
         aria-label="Email address"
       />
-      <button type="submit" className="btn btn-primary">
-        Sign Up
+      <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
+        {status === "sending" ? "Signing up…" : "Sign Up"}
       </button>
-      {status === "ok" && (
-        <p className="sm:absolute sm:translate-y-14 text-sm text-[color:var(--forest)]">
-          Thanks — you&apos;re on the list.
-        </p>
-      )}
-      {status === "error" && (
-        <p className="sm:absolute sm:translate-y-14 text-sm text-red-700">
-          Please enter a valid email.
+      {note && (
+        <p
+          role="status"
+          className={`sm:absolute sm:translate-y-14 text-sm ${note.tone}`}
+        >
+          {note.text}
         </p>
       )}
     </form>

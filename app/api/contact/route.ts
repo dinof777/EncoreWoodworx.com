@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { submitToGoogleForm } from "@/lib/google-form";
+import { PROJECT_FORM, buildProjectDetails } from "@/lib/forms";
 
 type BasketEntry = {
   id?: string;
@@ -38,16 +40,30 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Tell me a little about your project" }, { status: 400 });
   }
 
-  const summary = basket
-    .map((b, i) => `  ${i + 1}. ${String(b.title ?? "").slice(0, 200)} (${b.priceLabel ?? "—"})`)
-    .join("\n");
+  const result = await submitToGoogleForm(PROJECT_FORM, {
+    name: name || "(not given)",
+    email,
+    details: buildProjectDetails(message, basket),
+  });
 
-  console.log("[contact] new inquiry", {
-    name,
+  if (!result.ok) {
+    // Never report success we did not achieve — the visitor would walk away believing
+    // the inquiry was sent. Log enough to diagnose, and tell them to email directly.
+    console.error("[contact] delivery failed", {
+      reason: result.reason,
+      email,
+      basketCount: basket.length,
+    });
+    return NextResponse.json(
+      { error: "Something went wrong sending that. Please email dinof777@gmail.com directly." },
+      { status: 502 },
+    );
+  }
+
+  console.log("[contact] inquiry delivered", {
     email,
     messageLength: message.length,
     basketCount: basket.length,
-    basket: summary || "(none)",
   });
 
   return NextResponse.json({ ok: true });

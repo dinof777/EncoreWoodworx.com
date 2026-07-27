@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { BasketButton } from "./BasketButton";
 
 const links = [
   { href: "/", label: "Home" },
@@ -28,7 +29,7 @@ export function Nav() {
               Encore Woodworx
             </span>
             <span className="text-[10px] tracking-[0.25em] uppercase text-[color:var(--muted)]">
-              Handcrafted · Est. 5 Brothers
+              Handcrafted · &amp; · Bespoke
             </span>
           </span>
         </Link>
@@ -55,9 +56,15 @@ export function Nav() {
             ),
           )}
         </nav>
-        <Link href="/contact" className="btn btn-primary hidden md:inline-flex">
-          Start a Project
-        </Link>
+        <div className="hidden md:flex items-center gap-3">
+          <BasketButton />
+          <Link href="/contact" className="btn btn-primary">
+            Start a Project
+          </Link>
+        </div>
+        <div className="md:hidden flex items-center gap-2">
+          <BasketButton />
+        </div>
         <details className="md:hidden relative">
           <summary className="list-none cursor-pointer p-2 -m-2" aria-label="Open menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -115,7 +115,18 @@ function ProductCard({ p, muted = false }: { p: EtsyListing; muted?: boolean }) 
         ) : null}
       </div>
       <div className="p-5">
-        <Eyebrow>{p.kind === "apparel" ? "Apparel" : p.kind === "other" ? "Accessory" : "From the shop"}</Eyebrow>
+        <div className="flex items-center gap-2">
+          <Eyebrow>{p.kind === "apparel" ? "Apparel" : p.kind === "other" ? "Accessory" : "From the shop"}</Eyebrow>
+          <span
+            className={`px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-[0.18em] ${
+              p.madeToOrder
+                ? "bg-[color:var(--accent)]/10 text-[color:var(--accent-deep)]"
+                : "bg-[color:var(--forest)]/10 text-[color:var(--forest)]"
+            }`}
+          >
+            {p.madeToOrder ? "Made to order" : "Ready to ship"}
+          </span>
+        </div>
         <h3 className="mt-2 font-display text-xl leading-tight">{p.title}</h3>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-base font-semibold">{p.priceLabel}</span>

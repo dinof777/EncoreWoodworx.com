@@ -14,6 +14,7 @@ export type EtsyListing = {
   descriptionPlain: string;
   publishedAt: string;
   kind: ListingKind;
+  madeToOrder: boolean;
 };
 
 const SHOP = process.env.ETSY_SHOP_NAME || "florabrofurnishings";
@@ -98,6 +99,12 @@ function classify(title: string, description: string): ListingKind {
   return "woodworking";
 }
 
+function isMadeToOrder(kind: ListingKind, title: string, description: string): boolean {
+  if (kind !== "woodworking") return false;
+  const t = `${title} ${description}`.toLowerCase();
+  return /\b(custom|made[ -]?to[ -]?order|bespoke|live[ -]?edge|epoxy river|barn door|stair railing|river table)\b/.test(t);
+}
+
 function normalize(item: Record<string, unknown>): EtsyListing {
   const title = decodeEntities(String(item.title ?? "")).trim();
   const link = String(item.link ?? "").split("?")[0];
@@ -112,6 +119,7 @@ function normalize(item: Record<string, unknown>): EtsyListing {
     .replace(/[\d,]+(?:\.\d{1,2})?\s?USD/gi, "")
     .replace(/\$\s?[\d,]+(?:\.\d{1,2})?/g, "")
     .trim();
+  const kind = classify(title, descriptionPlain);
   return {
     id,
     title,
@@ -123,7 +131,8 @@ function normalize(item: Record<string, unknown>): EtsyListing {
     description: descRaw,
     descriptionPlain,
     publishedAt: String(item.pubDate ?? ""),
-    kind: classify(title, descriptionPlain),
+    kind,
+    madeToOrder: isMadeToOrder(kind, title, descriptionPlain),
   };
 }
 

@@ -8,6 +8,7 @@ import {
   shopUrl,
 } from "@/lib/etsy";
 import { Section, Eyebrow } from "@/components/Section";
+import { AddToProjectButton } from "@/components/AddToProjectButton";
 
 export const revalidate = 3600;
 
@@ -86,8 +87,19 @@ export default async function ProductPage({
           </div>
 
           <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <Eyebrow>From the shop</Eyebrow>
-            <h1 className="font-display text-4xl md:text-5xl mt-3 leading-[1.05]">
+            <div className="flex items-center gap-2 mb-3">
+              <span
+                className={`px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] ${
+                  listing.madeToOrder
+                    ? "bg-[color:var(--accent)]/10 text-[color:var(--accent-deep)]"
+                    : "bg-[color:var(--forest)]/10 text-[color:var(--forest)]"
+                }`}
+              >
+                {listing.madeToOrder ? "Made to order" : "Ready to ship"}
+              </span>
+              <Eyebrow>From the shop</Eyebrow>
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl mt-1 leading-[1.05]">
               {listing.title}
             </h1>
             <p className="mt-6 font-display text-3xl text-[color:var(--accent-deep)]">
@@ -95,31 +107,65 @@ export default async function ProductPage({
             </p>
 
             <div className="mt-8 space-y-3">
-              <a
-                href={listing.etsyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary w-full"
-              >
-                Buy on Etsy ↗
-              </a>
-              <Link
-                href="/contact"
-                className="btn btn-ghost w-full"
-              >
-                Ask about a custom version
-              </Link>
+              {listing.madeToOrder ? (
+                <>
+                  <AddToProjectButton
+                    id={listing.id}
+                    slug={listing.slug}
+                    title={listing.title}
+                    priceLabel={listing.priceLabel}
+                    imageUrl={listing.imageUrl}
+                  />
+                  <a
+                    href={listing.etsyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost w-full"
+                  >
+                    Or buy this exact piece on Etsy ↗
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a
+                    href={listing.etsyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary w-full"
+                  >
+                    Buy on Etsy ↗
+                  </a>
+                  <Link href="/contact" className="btn btn-ghost w-full">
+                    Ask about a custom version
+                  </Link>
+                </>
+              )}
             </div>
 
             <div className="mt-8 rounded-xl bg-[color:var(--surface)] border border-[color:var(--border)] p-5 text-sm text-[color:var(--muted)] leading-relaxed">
-              <p className="font-semibold text-[color:var(--foreground)] mb-2">
-                Why checkout on Etsy?
-              </p>
-              <ul className="space-y-1 list-disc list-inside marker:text-[color:var(--accent)]">
-                <li>Secure payments &amp; buyer protection</li>
-                <li>Real reviews from past customers</li>
-                <li>Tracked shipping straight from the workshop</li>
-              </ul>
+              {listing.madeToOrder ? (
+                <>
+                  <p className="font-semibold text-[color:var(--foreground)] mb-2">
+                    How &ldquo;Add to Project&rdquo; works
+                  </p>
+                  <ul className="space-y-1 list-disc list-inside marker:text-[color:var(--accent)]">
+                    <li>Add as many pieces as you&apos;re considering — no commitment</li>
+                    <li>Send the whole list as one inquiry; we reply with options &amp; a quote</li>
+                    <li>Final order goes through Etsy for secure checkout &amp; buyer protection</li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <p className="font-semibold text-[color:var(--foreground)] mb-2">
+                    Why checkout on Etsy?
+                  </p>
+                  <ul className="space-y-1 list-disc list-inside marker:text-[color:var(--accent)]">
+                    <li>Secure payments &amp; buyer protection</li>
+                    <li>Real reviews from past customers</li>
+                    <li>Tracked shipping straight from the workshop</li>
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>

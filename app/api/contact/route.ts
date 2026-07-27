@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
   // A basket OR a written message satisfies the inquiry — empty inquiries are blocked.
   if (basket.length === 0 && (!message || message.length < 5)) {
-    return NextResponse.json({ error: "Tell us a little about your project" }, { status: 400 });
+    return NextResponse.json({ error: "Tell me a little about your project" }, { status: 400 });
   }
 
   const summary = basket

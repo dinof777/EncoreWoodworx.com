@@ -21,7 +21,7 @@ export default async function ShopTipsPage() {
           className="absolute inset-0 -z-10 opacity-25"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 75% 40%, rgba(214,168,106,0.55), transparent 55%)",
+              "radial-gradient(circle at 75% 40%, rgba(201,180,140,0.55), transparent 55%)",
           }}
         />
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">

@@ -57,9 +57,9 @@ export default async function ProductPage({
     <>
       <Section className="!pt-12 md:!pt-16">
         <nav className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)] mb-8">
-          <Link href="/" className="hover:text-[color:var(--accent)]">Home</Link>
+          <Link href="/" className="hover:text-[color:var(--accent-deep)]">Home</Link>
           <span className="mx-2 opacity-50">/</span>
-          <Link href="/shop" className="hover:text-[color:var(--accent)]">Shop</Link>
+          <Link href="/shop" className="hover:text-[color:var(--accent-deep)]">Shop</Link>
           <span className="mx-2 opacity-50">/</span>
           <span className="text-[color:var(--foreground)]">{listing.title}</span>
         </nav>

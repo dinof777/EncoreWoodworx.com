@@ -66,11 +66,27 @@ app/globals.css      wiring only: @import tailwindcss -> tokens -> base -> compo
 | `--muted` | `#615a4d` | secondary copy |
 | `--surface` | `#faf8f3` | chalk-white cards |
 | `--border` | `#c6b99f` | hairlines on paper |
-| `--accent` | `#a87a35` | oak tan — the one action colour |
+| `--accent` | `#a87a35` | bright oak — fills, borders, markers, display type ≥24px |
+| `--accent-ink` | `#6e5023` | the same oak, dark enough to read as small text |
 | `--accent-deep` | `#26231e` | near-black panels, eyebrows, hover |
 | `--accent-soft` | `#c9b48c` | tan-on-dark, muted highlights |
 | `--forest` | `#3a4a3a` | the single cool counterpoint; success/positive copy only |
 | `--slab` | `#d0c3ab` | placeholder fill behind photography |
+
+### The two oaks, and why
+
+`--accent` is the brand colour, but it is a *bright* mid-tone: 2.56:1 on the kraft page and
+3.60:1 on a chalk card. That is fine for a fill, a border, a list marker or a 30px display
+numeral (large text only needs 3:1), and **not** fine for body copy, links, or a 14px button
+label, which need 4.5:1.
+
+Rather than darken the whole brand into mud, the system carries two oaks. Use `--accent` for
+anything that is a surface or is large; use `--accent-ink` (`#6e5023` — 4.96:1 on kraft,
+6.98:1 on chalk) the moment the oak becomes small text. Semantic aliases already point at the
+right one, so reaching for `--text-link` or `--action-primary` gets this right for free.
+
+**Never set small text to `var(--accent)` on a light surface.** That is the one rule in this
+palette that is an accessibility failure rather than a taste question.
 
 ### Semantic aliases
 

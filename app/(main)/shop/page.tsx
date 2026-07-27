@@ -73,7 +73,7 @@ export default async function ShopPage() {
                   />
                   <Link
                     href="/live-blended"
-                    className="text-sm font-semibold text-[color:var(--accent-deep)] underline underline-offset-4 hover:text-[color:var(--accent)]"
+                    className="text-sm font-semibold text-[color:var(--accent-deep)] underline underline-offset-4 hover:text-[color:var(--accent-ink)]"
                   >
                     Read the story →
                   </Link>

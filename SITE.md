@@ -109,7 +109,8 @@ Validation the handler enforces: email format, `name` ≤ 200 chars, `message` �
 
 | Module | Role |
 |---|---|
-| `components/Nav.tsx` | Sticky header, lockup, desktop + mobile nav, basket count |
+| `components/Nav.tsx` | Sticky header, lockup, desktop nav, basket count. Server component |
+| `components/MobileMenu.tsx` | The `md:hidden` dropdown. Client, because a `<details>` has no reason to close itself under client-side routing — it closes on tap, route change, Escape and outside tap |
 | `components/Footer.tsx` | Motto (1 of its 2 sitewide placements), links, hours |
 | `components/Section.tsx` | `Section`, `SectionHeader`, `Eyebrow` — the page rhythm primitives |
 | `components/HeroSlideshow.tsx` | Crossfading homepage hero with the scrim + grain overlays |
@@ -148,6 +149,4 @@ after Tailwind, so they silently win.
    `filter: invert(1)` and it muddies below ~48px.
 3. Owned workshop photography. Everything currently comes from Etsy's CDN, where the
    RSS thumbnails are ~188px and upscale roughly 2× into the catalogue cards.
-4. Colour-contrast pass on the accent token — the oak tan currently sits below WCAG AA
-   on both the kraft page and the chalk cards. See `.design/kraft-and-chalk/DESIGN_REVIEW.md`.
-5. Test coverage. There is none today.
+4. Test coverage. There is none today.

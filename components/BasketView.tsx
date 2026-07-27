@@ -62,7 +62,7 @@ export function BasketView() {
             <div className="flex-1 min-w-0">
               <Link
                 href={`/shop/${item.slug}`}
-                className="font-display text-lg leading-tight hover:text-[color:var(--accent)] transition-colors line-clamp-2"
+                className="font-display text-lg leading-tight hover:text-[color:var(--accent-deep)] transition-colors line-clamp-2"
               >
                 {item.title}
               </Link>

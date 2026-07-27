@@ -47,9 +47,9 @@ export default async function PostPage({
         {/* HEADER */}
         <Section className="!pt-12 md:!pt-16 !pb-0">
           <nav className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)] mb-10">
-            <Link href="/" className="hover:text-[color:var(--accent)]">Home</Link>
+            <Link href="/" className="hover:text-[color:var(--accent-deep)]">Home</Link>
             <span className="mx-2 opacity-50">/</span>
-            <Link href="/shop-tips" className="hover:text-[color:var(--accent)]">Shop Tips</Link>
+            <Link href="/shop-tips" className="hover:text-[color:var(--accent-deep)]">Shop Tips</Link>
             <span className="mx-2 opacity-50">/</span>
             <span className="text-[color:var(--foreground)] truncate">{post.title}</span>
           </nav>

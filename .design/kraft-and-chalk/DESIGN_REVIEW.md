@@ -57,9 +57,14 @@ a 2px offset (11.9:1 on kraft, 16.7:1 on chalk), inverting to `--text-inverse` f
 dark panels. **`--ring-focus` remains too weak to be a focus indicator on its own** — it works on
 `.input` only because a border-colour change carries the signal alongside it.
 
-**Left for your decision:** Must-fix #1–#3 (the contrast set) all change how the brand looks and
-are a palette call, not an implementation one. Should-fix #4 (touch targets) and #5 (imagery)
-likewise need product decisions.
+**Resolved since (commit below):** Must-fix #1–#3, the contrast set. The fix keeps the bright
+oak as the brand colour and adds a second, darker `--accent-ink` for the moment that oak becomes
+small text — so the page stays bright while the type became legible. `--text-link` and
+`--action-primary` now resolve to the ink; hover states were retargeted so no hover drops back
+below AA. Measured after: button label 6.98:1, links on kraft 4.96:1, links on chalk 6.98:1.
+
+**Still left for your decision:** Should-fix #4 (touch targets) and #5 (imagery) need product
+decisions, and the mobile/tablet gap in "Method" above is still unverified.
 
 ## Must fix
 

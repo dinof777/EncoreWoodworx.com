@@ -43,11 +43,11 @@ export function Footer() {
         <div>
           <h3 className="eyebrow">Explore</h3>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link className="hover:text-[color:var(--accent)]" href="/services">Services</Link></li>
-            <li><Link className="hover:text-[color:var(--accent)]" href="/shop">Shop</Link></li>
-            <li><a className="hover:text-[color:var(--accent)]" href="https://photos.app.goo.gl/nanyeNbDvnaD7ujd7" target="_blank" rel="noopener noreferrer">Gallery</a></li>
-            <li><Link className="hover:text-[color:var(--accent)]" href="/shop-tips">Shop Tips</Link></li>
-            <li><Link className="hover:text-[color:var(--accent)]" href="/contact">Contact</Link></li>
+            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/services">Services</Link></li>
+            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/shop">Shop</Link></li>
+            <li><a className="hover:text-[color:var(--accent-deep)]" href="https://photos.app.goo.gl/nanyeNbDvnaD7ujd7" target="_blank" rel="noopener noreferrer">Gallery</a></li>
+            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/shop-tips">Shop Tips</Link></li>
+            <li><Link className="hover:text-[color:var(--accent-deep)]" href="/contact">Contact</Link></li>
           </ul>
         </div>
 

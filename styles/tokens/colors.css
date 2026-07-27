@@ -9,8 +9,13 @@
   --surface: #faf8f3;
   --border: #c6b99f;
 
-  /* wood-tone accents */
-  --accent: #a87a35;
+  /* Wood-tone accents.
+     --accent is the brand oak. It is bright enough to carry fills, borders, badge
+     tints and large display type, but at 2.56:1 on kraft and 3.60:1 on chalk it is
+     NOT readable as small text — use --accent-ink for that. Keeping the two separate
+     is what lets the page stay bright while the type stays legible. */
+  --accent: #a87a35;       /* fills, borders, markers, display type ≥24px */
+  --accent-ink: #6e5023;   /* the same oak, dark enough to read: 4.96:1 kraft, 6.98:1 chalk */
   --accent-deep: #26231e;
   --accent-soft: #c9b48c;
 
@@ -26,7 +31,7 @@
   --text-muted: var(--muted);
   --text-eyebrow: var(--accent-deep);
   --text-inverse: var(--surface);
-  --text-link: var(--accent);
+  --text-link: var(--accent-ink);
   --text-link-hover: var(--accent-deep);
   --text-success: var(--forest);
   --text-error: #b91c1c;
@@ -41,7 +46,10 @@
   --border-strong: var(--foreground);
   --border-on-dark: rgba(250, 248, 243, 0.3);
 
-  --action-primary: var(--accent);
+  /* The button fill uses the ink, not the bright oak: chalk-white label on --accent
+     is only 3.60:1, which fails AA for 14px button type. On --accent-ink it is 6.98:1
+     and the pill still reads as the same warm oak, just richer. */
+  --action-primary: var(--accent-ink);
   --action-primary-hover: var(--accent-deep);
   --action-primary-text: #faf8f3;
   --focus-ring: rgba(168, 122, 53, 0.2);

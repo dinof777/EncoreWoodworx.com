@@ -56,6 +56,20 @@
       border-color var(--duration-fast) var(--ease);
   }
 
+  /* Focus treatment. Deliberately a solid char outline rather than --ring-focus:
+     that token is rgba(168,122,53,0.2), which composites to roughly 1.15:1 on a chalk
+     card — fainter than the browser default it replaces, and well under the 3:1 that
+     WCAG 2.2 asks of a focus indicator. Char clears 11.9:1 on kraft and 16.7:1 on
+     chalk. .btn-light lives on dark panels, so it inverts. */
+  .btn:focus-visible {
+    outline: 2px solid var(--border-strong);
+    outline-offset: 2px;
+  }
+
+  .btn-light:focus-visible {
+    outline-color: var(--text-inverse);
+  }
+
   .btn-primary {
     background: var(--action-primary);
     color: var(--action-primary-text);

@@ -23,4 +23,26 @@
   a:hover {
     color: var(--text-link-hover);
   }
+
+  /* The hero crossfades on a 1400ms timer and several sections animate in on scroll.
+     Honour a reduced-motion preference by collapsing every duration in the token set
+     rather than chasing individual components. */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-fast: 1ms;
+      --duration-media: 1ms;
+      --duration-crossfade: 1ms;
+      --lift: none;
+      --media-zoom: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

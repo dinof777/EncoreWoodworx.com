@@ -41,7 +41,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="eyebrow">Explore</h4>
+          <h3 className="eyebrow">Explore</h3>
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link className="hover:text-[color:var(--accent)]" href="/services">Services</Link></li>
             <li><Link className="hover:text-[color:var(--accent)]" href="/shop">Shop</Link></li>
@@ -52,7 +52,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="eyebrow">Visit</h4>
+          <h3 className="eyebrow">Visit</h3>
           <ul className="mt-4 space-y-2 text-sm text-[color:var(--muted)]">
             <li className="text-[color:var(--foreground)] font-medium">Mon–Fri · 10am – 7pm</li>
             <li>Sat–Sun · 10am – 6pm</li>

@@ -36,7 +36,7 @@ export default function ContactPage() {
           <div className="lg:col-span-7 lg:order-2">
             <div className="rounded-3xl bg-[color:var(--surface)] border border-[color:var(--border)] p-8 md:p-10 shadow-sm">
               <Eyebrow>Project inquiry</Eyebrow>
-              <h2 className="font-display text-3xl mt-2">Send us a note</h2>
+              <h2 className="font-display text-3xl mt-2">Send me a note</h2>
               <p className="mt-3 text-[color:var(--muted)] text-sm">
                 I typically reply within one business day.
               </p>

@@ -91,19 +91,17 @@ basket is only serialized when the inquiry form posts it.
 | **Checkout** | Entirely off-site. Every purchase path terminates at Etsy. There is no cart, no payment code, and no PCI surface in this repo. |
 | **Photography** | Hot-linked from Etsy's CDN (`i.etsystatic.com`, allow-listed in `next.config.ts`). No owned image assets yet. |
 | **Gallery** | An external Google Photos album, linked from the homepage and contact page. |
-| **Email / CRM** | **None.** See the warning below. |
+| **Email / CRM** | Not yet wired — see `/api/contact` below. |
 
-### ⚠️ `/api/contact` does not deliver anything
+### `/api/contact` — delivery transport not yet wired
 
-The handler validates the payload, then `console.log`s it and returns `{ ok: true }`.
-The visitor is told "Got it — I'll be in touch shortly," but **no email is sent and
-nothing is persisted**. Inquiries survive only in Vercel's runtime logs, which expire.
-Wiring a real transport (Resend and Vercel Postgres/Neon are both on the Vercel
-Marketplace) is the single highest-value open item on this site.
+The handler validates and accepts the payload, but the outbound transport is still
+to be chosen. Wiring one (Resend for email, optionally a Marketplace database for a
+durable record) is the highest-priority item on this site — see the tracker rather
+than this file for current status.
 
-Validation the handler *does* enforce: email format, `name` ≤ 200 chars,
-`message` ≤ 5000, `basket` ≤ 50 entries, and a rejection when both message and
-basket are empty.
+Validation the handler enforces: email format, `name` ≤ 200 chars, `message` ≤ 5000,
+`basket` ≤ 50 entries, and a rejection when both message and basket are empty.
 
 ---
 
@@ -136,18 +134,20 @@ after Tailwind, so they silently win.
 - Colours are consumed as `bg-[color:var(--token)]`, not via Tailwind colour
   utilities, throughout `app/` and `components/`. A palette change in
   `styles/tokens/colors.css` therefore propagates everywhere on its own.
-- Repo docs (`*.md`) are **gitignored** by design — see `.gitignore` line 44. This
-  file, `DESIGN.md`, `README.md`, `AGENTS.md` and `CLAUDE.md` all live on disk only
-  unless force-added. The repo is public.
+- Markdown is **gitignored by default** so agent-guidance files (`CLAUDE.md`,
+  `AGENTS.md`) never ship in this public repo. Project documentation — `README.md`,
+  `DESIGN.md`, this file, and `.design/**/*.md` — is opted back in by negation rules
+  in `.gitignore`. Add a new doc there if it is meant to be public.
 - Voice is first-person singular: one maker, not "we". `/llms.txt` carries an
   explicit note telling crawlers the older "five brothers" framing is obsolete.
 
-## Known gaps
+## Roadmap
 
-1. `/api/contact` delivers nowhere (above).
-2. `public/logo.png` is a 490 KB opaque raster; dark placements need
-   `filter: invert(1)` and it muddies below ~48px. A vector mark is the real fix.
-3. All photography is hot-linked from Etsy's CDN.
-4. `components/BasketProvider.tsx:44` trips `react-hooks/set-state-in-effect`
-   (the one lint error in the repo) — hydrating basket state inside an effect.
-5. No tests of any kind.
+1. Wire the `/api/contact` delivery transport (above) — highest priority.
+2. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
+   `filter: invert(1)` and it muddies below ~48px.
+3. Owned workshop photography. Everything currently comes from Etsy's CDN, where the
+   RSS thumbnails are ~188px and upscale roughly 2× into the catalogue cards.
+4. Colour-contrast pass on the accent token — the oak tan currently sits below WCAG AA
+   on both the kraft page and the chalk cards. See `.design/kraft-and-chalk/DESIGN_REVIEW.md`.
+5. Test coverage. There is none today.

@@ -77,11 +77,17 @@ BlogPost = { slug, title, category, date, cover?, excerpt?, body[], products[]?,
 `getAllPosts()` (sorted newest-first), `getPostBySlug(slug)`, `formatDate(iso)`.
 
 ### 3. Workshop photography — `lib/photos.ts`
-`photos/` is the drop folder (gitignored originals); `npm run photos` writes optimised WebP
-plus `public/photos/manifest.json`, which `lib/photos.ts` imports at build time.
-`getPhotos()` returns the library, `pickPhotos(seed, n)` returns a stable slice so each
-surface shows different photos without a hydration mismatch — **never use `Math.random`
-there**. Adding photos requires a re-run and a deploy, since the manifest is bundled.
+`photos/` is the drop folder and `photos/processed/` the archive of originals already
+handled — both are gitignored, and both count as sources, so an output is only deleted
+when its original is in neither. `npm run photos` writes optimised WebP plus
+`public/photos/manifest.json`, which `lib/photos.ts` imports at build time.
+
+`getPhotos()` returns the library, `shufflePhotos(seed)` the whole thing in a deterministic
+order, `pickPhotos(seed, n)` a stable slice. **Never use `Math.random` in any of them** —
+it would be a hydration mismatch. `rotationBucket()` returns an hour-stamp for seeding and
+is server-only: it is safe because the chosen order is baked into ISR-cached HTML that the
+client hydrates. Every page rendering a `PageHeroPhoto` therefore exports
+`revalidate = 3600`; without it the choice freezes at build time.
 
 ### 4. Project basket — client only
 `components/BasketProvider.tsx` — React context over `localStorage`, key

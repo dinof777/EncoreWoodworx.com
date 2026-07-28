@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Section, SectionHeader, Eyebrow } from "@/components/Section";
 import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
+// Regenerate hourly so the hero photograph rotates through the library.
+export const revalidate = 3600;
+
 const services = [
   {
     title: "Custom Wood Tables",

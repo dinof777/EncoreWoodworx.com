@@ -4,6 +4,9 @@ import { Section, SectionHeader, Eyebrow } from "@/components/Section";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
+// Regenerate hourly so the hero photograph rotates through the library.
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Shop Tips — Encore Woodworx",
   description:

@@ -3,6 +3,9 @@ import { Section, Eyebrow } from "@/components/Section";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
+// Regenerate hourly so the hero photograph rotates through the library.
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Contact — Encore Woodworx",
   description:

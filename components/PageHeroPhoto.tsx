@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { pickPhotos } from "@/lib/photos";
+import { pickPhotos, rotationBucket } from "@/lib/photos";
 
 /**
  * A workshop photograph behind a page hero, with a scrim heavy enough to keep the
@@ -14,7 +14,10 @@ import { pickPhotos } from "@/lib/photos";
  * background instead of disappearing behind it.
  */
 export function PageHeroPhoto({ seed }: { seed: string }) {
-  const [photo] = pickPhotos(seed, 1);
+  // Seeded by surface *and* hour, so each page shows a different photo and all of them
+  // get their turn. Requires the host page to export `revalidate`, or the choice is
+  // frozen at build time.
+  const [photo] = pickPhotos(`${seed}-${rotationBucket()}`, 1);
   if (!photo) return null;
 
   return (

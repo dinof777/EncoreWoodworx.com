@@ -57,3 +57,26 @@ export function pickPhotos(seed: string, count: number): PhotoImage[] {
   const take = Math.min(count, all.length);
   return Array.from({ length: take }, (_, i) => all[(start + i) % all.length]);
 }
+
+/**
+ * The whole library in a deterministic shuffle — so a hero cycles everything rather than
+ * always opening on the same photo in filename order.
+ */
+export function shufflePhotos(seed: string): PhotoImage[] {
+  return getPhotos()
+    .map((photo) => ({ photo, key: hash(seed + photo.src) }))
+    .sort((a, b) => a.key - b.key)
+    .map((entry) => entry.photo);
+}
+
+/**
+ * Changes once an hour. Feed it into a seed on a page that sets `revalidate`, and the
+ * selection rotates with each regeneration.
+ *
+ * This is safe *only* on the server: the chosen order is baked into the ISR-cached HTML
+ * that the client then hydrates, so both sides see the same thing. Calling it during a
+ * client render would reintroduce exactly the mismatch the seeding avoids.
+ */
+export function rotationBucket(): string {
+  return String(Math.floor(Date.now() / 3_600_000));
+}

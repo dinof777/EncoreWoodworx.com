@@ -3,7 +3,7 @@ import { Section, SectionHeader, Eyebrow } from "@/components/Section";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { getListings } from "@/lib/etsy";
-import { getPhotos } from "@/lib/photos";
+import { shufflePhotos, rotationBucket } from "@/lib/photos";
 
 export const revalidate = 3600;
 
@@ -62,10 +62,10 @@ export default async function Home() {
   const listings = await getListings();
   // Own photography leads when there is any; the Etsy catalogue is the fallback so the
   // hero is never empty before photos have been added.
-  const ownPhotos = getPhotos();
+  const ownPhotos = shufflePhotos(`home-hero-${rotationBucket()}`);
   const heroImages =
     ownPhotos.length > 0
-      ? ownPhotos.slice(0, 8)
+      ? ownPhotos
       : listings
           .filter((l) => l.kind === "woodworking" && !!l.imageUrl)
           .slice(0, 8)

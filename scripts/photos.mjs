@@ -17,7 +17,7 @@
  *  - A photo removed from photos/ has its generated output removed too.
  */
 
-import { readdir, mkdir, readFile, writeFile, unlink, stat } from "node:fs/promises";
+import { readdir, mkdir, readFile, writeFile, unlink, stat, rename } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { execFile } from "node:child_process";
@@ -28,6 +28,12 @@ const run = promisify(execFile);
 
 const ROOT = process.cwd();
 const SRC_DIR = path.join(ROOT, "photos");
+/**
+ * Originals move here once processed, so the drop folder only ever shows what is new.
+ * They are still sources: a photo is on the site while its original is in *either*
+ * location, and deleting it from here is how you take it off the site.
+ */
+const DONE_DIR = path.join(SRC_DIR, "processed");
 const OUT_DIR = path.join(ROOT, "public", "photos");
 const MANIFEST = path.join(OUT_DIR, "manifest.json");
 
@@ -86,11 +92,17 @@ async function main() {
     process.exit(1);
   }
   await mkdir(OUT_DIR, { recursive: true });
+  await mkdir(DONE_DIR, { recursive: true });
 
-  const entries = (await readdir(SRC_DIR))
-    .filter((f) => !f.startsWith("."))
-    .filter((f) => SOURCE_EXT.has(path.extname(f).toLowerCase()))
-    .sort();
+  const usable = (f) => !f.startsWith(".") && SOURCE_EXT.has(path.extname(f).toLowerCase());
+  const incoming = (await readdir(SRC_DIR)).filter(usable).sort();
+  const archived = (await readdir(DONE_DIR)).filter(usable).sort();
+
+  // Both folders are sources. Anything in the drop root is new and gets filed away after.
+  const entries = [
+    ...incoming.map((f) => ({ name: f, dir: SRC_DIR, fresh: true })),
+    ...archived.map((f) => ({ name: f, dir: DONE_DIR, fresh: false })),
+  ];
 
   // Keep whatever alt text has been written by hand.
   let previous = [];
@@ -105,9 +117,10 @@ async function main() {
   const seen = new Set();
   let built = 0;
   let reused = 0;
+  let filed = 0;
 
-  for (const entry of entries) {
-    const src = path.join(SRC_DIR, entry);
+  for (const { name: entry, dir, fresh } of entries) {
+    const src = path.join(dir, entry);
     let slug = slugify(entry);
     while (seen.has(slug)) slug = `${slug}-2`;
     seen.add(slug);
@@ -145,6 +158,17 @@ async function main() {
       height: meta.height ?? null,
       alt: handWritten ? stored : generated,
     });
+
+    if (fresh) {
+      // File the original away so the drop folder shows only what has yet to be processed.
+      let dest = path.join(DONE_DIR, entry);
+      if (existsSync(dest)) {
+        const ext = path.extname(entry);
+        dest = path.join(DONE_DIR, `${path.basename(entry, ext)}-${Date.now()}${ext}`);
+      }
+      await rename(src, dest);
+      filed++;
+    }
   }
 
   // Drop generated files whose source is gone.
@@ -159,11 +183,12 @@ async function main() {
     }
   }
 
+  photos.sort((a, b) => a.file.localeCompare(b.file));
   await writeFile(MANIFEST, JSON.stringify({ photos }, null, 2) + "\n");
 
   console.log(
     `\n${photos.length} photo${photos.length === 1 ? "" : "s"} ready` +
-      `  (${built} built, ${reused} unchanged, ${removed} removed)`,
+      `  (${built} built, ${reused} unchanged, ${filed} filed to processed/, ${removed} removed)`,
   );
   if (photos.length === 0) {
     console.log("Drop images into photos/ and run this again.");

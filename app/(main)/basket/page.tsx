@@ -2,6 +2,9 @@ import { Section, Eyebrow } from "@/components/Section";
 import { BasketView } from "@/components/BasketView";
 import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
+// Regenerate hourly so the hero photograph rotates through the library.
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Your Project — Encore Woodworx",
   description:

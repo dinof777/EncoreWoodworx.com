@@ -40,9 +40,10 @@ That resizes to 2400px, converts to WebP, applies EXIF rotation, and **strips me
 including the GPS coordinates phone photos embed** — those would otherwise publish the
 location of your workshop and home.
 
-**Adding more later:** drop them in and run it again. Never delete anything first — the
-run is incremental (unchanged files are skipped) and `photos/` is the source of truth, so
-removing a file there removes it from the site.
+**Adding more later:** drop them in and run it again. Never delete anything first. Each
+run files processed originals into `photos/processed/` so the drop folder only shows what
+is new; those archived files are still sources and are not rebuilt. To take a photo off
+the site, delete it from `photos/processed/` and re-run.
 
 The originals stay on your machine (`photos/` is gitignored); only the optimised output in
 `public/photos/` is committed.
@@ -54,10 +55,11 @@ read aloud by a screen reader is worse than silence. Write real descriptions int
 `public/photos/manifest.json` for any photo that carries meaning; hand-written wording is
 preserved across re-runs.
 
-Photos then rotate through the site automatically: the homepage hero cycles the whole
-library, and each section hero picks a stable one via `pickPhotos(seed, n)` in
-`lib/photos.ts`. With no photos present the site falls back to Etsy imagery and plain dark
-panels, so it is safe to ship empty.
+Photos then rotate through the site automatically. The homepage hero cycles the **whole
+library** in a shuffled order; each section hero shows one photo, seeded by page and hour,
+so every page differs and the selection changes hourly as ISR regenerates. With no photos
+present the site falls back to Etsy imagery and plain dark panels, so it is safe to ship
+empty.
 
 ### Environment
 

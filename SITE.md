@@ -103,15 +103,16 @@ basket is only serialized when the inquiry form posts it.
 |---|---|
 | **Etsy** | Public RSS only. `ETSY_SHOP_NAME` (defaults to `florabrofurnishings`). `ETSY_API_KEY` and `ETSY_SHARED_SECRET` are present in `.env.local` but **currently unread by any code** — the site does not call the Etsy API. |
 | **Checkout** | Entirely off-site. Every purchase path terminates at Etsy. There is no cart, no payment code, and no PCI surface in this repo. |
-| **Photography** | Owned photos in `public/photos/`, generated from the `photos/` drop folder by `npm run photos`. Etsy's CDN (`i.etsystatic.com`) still backs catalogue imagery and is the hero fallback when no owned photos exist. |
+| **Photography** | 63 owned photos in `public/photos/`, generated from the `photos/` drop folder by `npm run photos`. Etsy's CDN (`i.etsystatic.com`) still backs catalogue imagery and is the hero fallback when no owned photos exist. |
 | **Gallery** | An external Google Photos album, linked from the homepage and contact page. |
 | **Email / CRM** | Google Apps Script web app writing to a Sheet + emailing a notification. See below. |
 
 ### Form intake — `/api/contact` and `/api/newsletter`
 
 Both post to a **Google Apps Script web app** (`scripts/apps-script/Code.gs`), deployed
-from the Google Sheet it writes to. It appends a row to a per-type tab and emails a
-notification. Setup steps are in the script's own header comment.
+from the Google Sheet it writes to. It appends a row to a per-type tab (*Project Inquiries*
+and *Newsletter*) and emails a notification. **Live and verified end to end** — local and
+production, with and without a basket. Setup steps are in the script's own header comment.
 
 ```
 APPS_SCRIPT_INTAKE_URL      the web app's /exec URL
@@ -182,10 +183,8 @@ why the desktop nav switches on at `lg` rather than `md`. Layout is verified cle
 
 ## Roadmap
 
-1. Deploy the Apps Script intake and set its two env vars — until then both forms
-   report failure honestly but deliver nothing.
-2. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
+1. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
    `filter: invert(1)` and it muddies below ~48px.
-3. Owned workshop photography — the pipeline exists (`photos/` → `npm run photos`), but no
-   photos have been added yet, so the site still runs on Etsy CDN imagery.
-4. Test coverage. There is none today.
+2. Test coverage. There is none today.
+3. The intake's shared secret is the only thing protecting the Sheet from anyone who finds
+   the `/exec` URL. Rotate it in the script and both env locations if it is ever exposed.

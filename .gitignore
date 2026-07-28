@@ -63,3 +63,7 @@ next-env.d.ts
 # any local secrets backups
 *.secret
 *-secret.*
+
+# photo drop folder — originals stay local; public/photos/ holds the generated output
+/photos/*
+!/photos/README.md

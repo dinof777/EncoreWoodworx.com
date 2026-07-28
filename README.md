@@ -23,7 +23,31 @@ npm run dev     # http://localhost:3030
 npm run build   # production build
 npm start       # serve the production build on :3030
 npm run lint
+npm run photos  # process the photos/ drop folder — see "Photography" below
 ```
+
+## Photography
+
+Drop images into **`photos/`** — any size, name or format, straight off a phone is fine —
+then run:
+
+```bash
+npm run photos
+git add public/photos && git commit -m "Add workshop photos" && git push
+```
+
+That resizes to 2400px, converts to WebP, applies EXIF rotation, and **strips metadata,
+including the GPS coordinates phone photos embed** — those would otherwise publish the
+location of your workshop and home.
+
+The originals stay on your machine (`photos/` is gitignored); only the optimised output in
+`public/photos/` is committed. Alt text is generated from the filename and can be improved
+in `public/photos/manifest.json` — your wording survives re-runs.
+
+Photos then rotate through the site automatically: the homepage hero cycles the whole
+library, and each section hero picks a stable one via `pickPhotos(seed, n)` in
+`lib/photos.ts`. With no photos present the site falls back to Etsy imagery and plain dark
+panels, so it is safe to ship empty.
 
 ### Environment
 

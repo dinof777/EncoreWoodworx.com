@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Section, SectionHeader, Eyebrow } from "@/components/Section";
 import { getAllPosts, formatDate } from "@/lib/blog";
+import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
 export const metadata = {
   title: "Shop Tips — Encore Woodworx",
@@ -17,6 +18,7 @@ export default async function ShopTipsPage() {
   return (
     <>
       <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden isolate">
+        <PageHeroPhoto seed="shop-tips" />
         <div
           className="absolute inset-0 -z-10 opacity-25"
           style={{

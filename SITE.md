@@ -76,7 +76,14 @@ BlogPost = { slug, title, category, date, cover?, excerpt?, body[], products[]?,
 
 `getAllPosts()` (sorted newest-first), `getPostBySlug(slug)`, `formatDate(iso)`.
 
-### 3. Project basket — client only
+### 3. Workshop photography — `lib/photos.ts`
+`photos/` is the drop folder (gitignored originals); `npm run photos` writes optimised WebP
+plus `public/photos/manifest.json`, which `lib/photos.ts` imports at build time.
+`getPhotos()` returns the library, `pickPhotos(seed, n)` returns a stable slice so each
+surface shows different photos without a hydration mismatch — **never use `Math.random`
+there**. Adding photos requires a re-run and a deploy, since the manifest is bundled.
+
+### 4. Project basket — client only
 `components/BasketProvider.tsx` — React context over `localStorage`, key
 `ew_basket_v1`. `BasketItem = { id, slug, title, priceLabel, imageUrl, addedAt }`.
 Exposes `add / remove / clear / has` via `useBasket()`. Nothing server-side; the
@@ -90,7 +97,7 @@ basket is only serialized when the inquiry form posts it.
 |---|---|
 | **Etsy** | Public RSS only. `ETSY_SHOP_NAME` (defaults to `florabrofurnishings`). `ETSY_API_KEY` and `ETSY_SHARED_SECRET` are present in `.env.local` but **currently unread by any code** — the site does not call the Etsy API. |
 | **Checkout** | Entirely off-site. Every purchase path terminates at Etsy. There is no cart, no payment code, and no PCI surface in this repo. |
-| **Photography** | Hot-linked from Etsy's CDN (`i.etsystatic.com`, allow-listed in `next.config.ts`). No owned image assets yet. |
+| **Photography** | Owned photos in `public/photos/`, generated from the `photos/` drop folder by `npm run photos`. Etsy's CDN (`i.etsystatic.com`) still backs catalogue imagery and is the hero fallback when no owned photos exist. |
 | **Gallery** | An external Google Photos album, linked from the homepage and contact page. |
 | **Email / CRM** | Google Apps Script web app writing to a Sheet + emailing a notification. See below. |
 
@@ -134,6 +141,7 @@ Validation before anything is delivered: email format, `name` ≤ 200 chars, `me
 | `components/BasketView.tsx`, `BasketInquiryForm.tsx`, `BasketButton.tsx`, `AddToProjectButton.tsx` | The project-basket flow |
 | `components/ContactForm.tsx`, `NewsletterForm.tsx` | Forms posting to `/api/contact` |
 | `components/PreviewSwitcher.tsx` | V1/V2/V3 pill, renders only under `/preview` |
+| `components/PageHeroPhoto.tsx` | Photo backdrop for a section hero. Renders nothing when the library is empty. Needs `isolate` on the host `<section>` — it layers at `-z-10` like the glow overlays |
 
 ## Styles
 
@@ -172,7 +180,6 @@ why the desktop nav switches on at `lg` rather than `md`. Layout is verified cle
    report failure honestly but deliver nothing.
 2. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
    `filter: invert(1)` and it muddies below ~48px.
-3. Owned workshop photography. Everything still comes from Etsy's CDN. `lib/etsy.ts`
-   rewrites the feed's `il_570xN` variant to `il_1588xN` so the catalogue is no longer
-   upscaling, but the shop does not own a single image.
+3. Owned workshop photography — the pipeline exists (`photos/` → `npm run photos`), but no
+   photos have been added yet, so the site still runs on Etsy CDN imagery.
 4. Test coverage. There is none today.

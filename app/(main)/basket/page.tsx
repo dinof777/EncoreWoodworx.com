@@ -1,5 +1,6 @@
 import { Section, Eyebrow } from "@/components/Section";
 import { BasketView } from "@/components/BasketView";
+import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
 export const metadata = {
   title: "Your Project — Encore Woodworx",
@@ -11,6 +12,7 @@ export default function BasketPage() {
   return (
     <>
       <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden isolate">
+        <PageHeroPhoto seed="basket" />
         <div
           className="absolute inset-0 -z-10 opacity-25"
           style={{

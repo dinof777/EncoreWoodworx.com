@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Section, Eyebrow } from "@/components/Section";
 import { ContactForm } from "@/components/ContactForm";
+import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
 export const metadata = {
   title: "Contact — Encore Woodworx",
@@ -11,7 +12,8 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden">
+      <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden isolate">
+        <PageHeroPhoto seed="contact" />
         <div
           className="absolute inset-0 opacity-25"
           style={{

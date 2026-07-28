@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getListings, type EtsyListing } from "@/lib/etsy";
 import { Section, SectionHeader, Eyebrow } from "@/components/Section";
+import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
 export const revalidate = 3600;
 
@@ -18,7 +19,8 @@ export default async function ShopPage() {
 
   return (
     <>
-      <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden">
+      <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden isolate">
+        <PageHeroPhoto seed="shop" />
         <div
           className="absolute inset-0 opacity-25"
           style={{

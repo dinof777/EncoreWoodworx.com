@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Section, SectionHeader, Eyebrow } from "@/components/Section";
+import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
 const services = [
   {
@@ -47,7 +48,8 @@ const services = [
 export default function Services() {
   return (
     <>
-      <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden">
+      <section className="bg-[color:var(--foreground)] text-[color:var(--surface)] relative overflow-hidden isolate">
+        <PageHeroPhoto seed="services" />
         <div
           className="absolute inset-0 opacity-25"
           style={{

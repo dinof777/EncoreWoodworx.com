@@ -20,9 +20,12 @@ export type PhotoImage = { src: string; alt: string; width?: number; height?: nu
 const PHOTOS: Photo[] = (manifest.photos ?? []) as Photo[];
 
 export function getPhotos(): PhotoImage[] {
+  // An empty alt is meaningful, not missing: it marks the photo as decorative, which is
+  // correct for a backdrop behind a heading. Do not substitute a generic string here —
+  // "Encore Woodworx workshop photograph" repeated 60 times is noise to a screen reader.
   return PHOTOS.filter((p) => p.file).map((p) => ({
     src: `/photos/${p.file}`,
-    alt: p.alt || "Encore Woodworx workshop photograph",
+    alt: p.alt ?? "",
     width: p.width ?? undefined,
     height: p.height ?? undefined,
   }));

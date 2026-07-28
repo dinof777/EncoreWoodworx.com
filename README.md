@@ -40,9 +40,19 @@ That resizes to 2400px, converts to WebP, applies EXIF rotation, and **strips me
 including the GPS coordinates phone photos embed** — those would otherwise publish the
 location of your workshop and home.
 
+**Adding more later:** drop them in and run it again. Never delete anything first — the
+run is incremental (unchanged files are skipped) and `photos/` is the source of truth, so
+removing a file there removes it from the site.
+
 The originals stay on your machine (`photos/` is gitignored); only the optimised output in
-`public/photos/` is committed. Alt text is generated from the filename and can be improved
-in `public/photos/manifest.json` — your wording survives re-runs.
+`public/photos/` is committed.
+
+**Alt text.** A descriptive filename becomes alt text automatically, so
+`live-edge-walnut-table.jpg` needs no further work. A camera filename like `IMG_0055.jpg`
+carries no meaning, so it gets an *empty* alt and is treated as decorative — "Img 0055"
+read aloud by a screen reader is worse than silence. Write real descriptions into
+`public/photos/manifest.json` for any photo that carries meaning; hand-written wording is
+preserved across re-runs.
 
 Photos then rotate through the site automatically: the homepage hero cycles the whole
 library, and each section hero picks a stable one via `pickPhotos(seed, n)` in

@@ -52,6 +52,18 @@ function altFromSlug(slug) {
 }
 
 /**
+ * Camera and phone filenames — IMG_0055, DSC_1234, PXL_2024…, a bare timestamp, a uuid.
+ * Turning those into alt text produces "Img 0055", which is worse than no alt text at all:
+ * a screen reader reads it aloud and the listener learns nothing. Such photos get an empty
+ * alt (correct for decorative imagery) until a real description is written.
+ */
+const CAMERA_NAME = /^(img|dsc|dscn|pxl|mvimg|photo|image|screenshot|fullsizerender)[-_ ]?\d*$|^\d{6,}|[0-9a-f]{8}-[0-9a-f]{4}/i;
+
+function isCameraName(slug) {
+  return CAMERA_NAME.test(slug.replace(/-/g, "_")) || CAMERA_NAME.test(slug);
+}
+
+/**
  * sharp only reads HEIC when its libvips was built with libheif, which is not guaranteed.
  * macOS ships `sips`, so convert to a temporary JPEG and carry on rather than failing.
  */
@@ -120,11 +132,18 @@ async function main() {
       console.log(`  built  ${entry}  ->  photos/${file}  (${meta.width}x${meta.height})`);
     }
 
+    // Preserve alt text only when it was written by hand. A stored value identical to what
+    // we would generate is our own placeholder, so it can be re-derived — that is what
+    // lets an improved rule repair filenames already in the manifest.
+    const generated = isCameraName(slug) ? "" : altFromSlug(slug);
+    const stored = priorAlt.get(file);
+    const handWritten = stored != null && stored !== "" && stored !== altFromSlug(slug);
+
     photos.push({
       file,
       width: meta.width ?? null,
       height: meta.height ?? null,
-      alt: priorAlt.get(file) ?? altFromSlug(slug),
+      alt: handWritten ? stored : generated,
     });
   }
 

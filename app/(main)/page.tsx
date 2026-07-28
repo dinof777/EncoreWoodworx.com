@@ -77,7 +77,11 @@ export default async function Home() {
       <section className="relative overflow-hidden isolate">
         <HeroSlideshow images={heroImages} />
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-28 md:py-40 text-[color:var(--surface)]">
-          <p className="eyebrow !text-[color:var(--accent-soft)]">Artisan Wooden Creations</p>
+          {/* White, not --accent-soft, because this eyebrow sits on a photograph behind only a
+              62% scrim. Measured over a real hero photo the tan drops to 2.58:1 on bright
+              areas; white holds 4.67:1 even against a pure-white image. The section heroes
+              keep the tan — their 80% scrim can carry it. */}
+          <p className="eyebrow !text-[color:var(--surface)]">Artisan Wooden Creations</p>
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl mt-4 max-w-4xl leading-[0.98]">
             Unique handcrafted wooden furnishings for your home or business.
           </h1>

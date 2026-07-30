@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { deliverIntake, renderBasket, INTAKE_NOT_CONFIGURED } from "@/lib/intake";
+import { screen } from "@/lib/spam";
 
 type BasketEntry = {
   id?: string;
@@ -13,6 +14,9 @@ type Payload = {
   email?: string;
   message?: string;
   basket?: BasketEntry[];
+  /** Anti-spam: hidden field, and how long the form was on screen. See lib/spam.ts. */
+  company?: string;
+  elapsedMs?: number;
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,6 +41,16 @@ export async function POST(req: Request) {
   // A basket OR a written message satisfies the inquiry — empty inquiries are blocked.
   if (basket.length === 0 && (!message || message.length < 5)) {
     return NextResponse.json({ error: "Tell me a little about your project" }, { status: 400 });
+  }
+
+  const verdict = screen({ honeypot: body.company, elapsedMs: body.elapsedMs, name, email, message });
+  if (verdict.spam) {
+    console.warn("[contact] blocked as spam", { reason: verdict.reason, email });
+    // A silent drop answers ok so the bot has nothing to learn from. A non-silent one is
+    // a signal we are less sure about, so tell the human how to get through.
+    return verdict.silent
+      ? NextResponse.json({ ok: true })
+      : NextResponse.json({ error: verdict.message }, { status: 400 });
   }
 
   const result = await deliverIntake({

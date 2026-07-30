@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useSpamGuard, HoneypotField } from "./SpamGuardFields";
 
 export function ContactForm() {
   const [name, setName] = useState("");
+  const guard = useSpamGuard();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
@@ -15,7 +17,13 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          company: guard.honeypotValue(),
+          elapsedMs: guard.elapsedMs(),
+        }),
       });
       if (!res.ok) throw new Error();
       setStatus("ok");
@@ -29,6 +37,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
+      <HoneypotField inputRef={guard.honeypotRef} />
       <div className="grid sm:grid-cols-2 gap-4">
         <label className="block">
           <span className="text-sm font-medium">Name</span>
@@ -79,7 +88,7 @@ export function ContactForm() {
         )}
       </div>
       <p className="text-xs text-[color:var(--muted)]">
-        This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+        Your details go straight to the shop and are never shared.
       </p>
     </form>
   );

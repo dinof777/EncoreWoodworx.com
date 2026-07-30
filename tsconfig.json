@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // Node's --experimental-strip-types test runner resolves ../spam.ts literally.
+    "allowImportingTsExtensions": true,
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

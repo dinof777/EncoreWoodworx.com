@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { deliverIntake, intakeConfigured, INTAKE_NOT_CONFIGURED } from "@/lib/intake";
+import { screen } from "@/lib/spam";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
-  let body: { email?: string; name?: string };
+  let body: { email?: string; name?: string; company?: string; elapsedMs?: number };
   try {
-    body = (await req.json()) as { email?: string; name?: string };
+    body = (await req.json()) as { email?: string; name?: string; company?: string; elapsedMs?: number };
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
@@ -15,6 +16,14 @@ export async function POST(req: Request) {
   const email = String(body.email ?? "").trim().slice(0, 200);
   if (!email || !EMAIL_RE.test(email)) {
     return NextResponse.json({ error: "Valid email is required" }, { status: 400 });
+  }
+
+  const verdict = screen({ honeypot: body.company, elapsedMs: body.elapsedMs, name, email });
+  if (verdict.spam) {
+    console.warn("[newsletter] blocked as spam", { reason: verdict.reason, email });
+    return verdict.silent
+      ? NextResponse.json({ ok: true })
+      : NextResponse.json({ error: verdict.message }, { status: 400 });
   }
 
   // Say so plainly rather than accepting an address we would drop — the previous version

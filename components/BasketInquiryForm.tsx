@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useBasket, type BasketItem } from "./BasketProvider";
+import { useSpamGuard, HoneypotField } from "./SpamGuardFields";
 
 export function BasketInquiryForm({ items }: { items: BasketItem[] }) {
   const { clear } = useBasket();
   const [name, setName] = useState("");
+  const guard = useSpamGuard();
   const [email, setEmail] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
@@ -28,6 +30,8 @@ export function BasketInquiryForm({ items }: { items: BasketItem[] }) {
             title: i.title,
             priceLabel: i.priceLabel,
           })),
+          company: guard.honeypotValue(),
+          elapsedMs: guard.elapsedMs(),
         }),
       });
       if (!res.ok) throw new Error();
@@ -54,6 +58,7 @@ export function BasketInquiryForm({ items }: { items: BasketItem[] }) {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
+      <HoneypotField inputRef={guard.honeypotRef} />
       <div className="grid sm:grid-cols-2 gap-4">
         <label className="block">
           <span className="text-sm font-medium">Your name</span>

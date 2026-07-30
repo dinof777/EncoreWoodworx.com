@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useSpamGuard, HoneypotField } from "./SpamGuardFields";
 
 type Status = "idle" | "sending" | "ok" | "invalid" | "unavailable" | "error";
 
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
+  const guard = useSpamGuard();
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: React.FormEvent) {
@@ -19,7 +21,11 @@ export function NewsletterForm() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          company: guard.honeypotValue(),
+          elapsedMs: guard.elapsedMs(),
+        }),
       });
       if (res.ok) {
         setStatus("ok");
@@ -50,6 +56,7 @@ export function NewsletterForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
+      <HoneypotField inputRef={guard.honeypotRef} />
       <input
         type="email"
         required

@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond, Fraunces } from "next/font/google";
 import "./globals.css";
 import { PreviewSwitcher } from "@/components/PreviewSwitcher";
 import { BasketProvider } from "@/components/BasketProvider";
+import { BusinessSchema } from "@/components/BusinessSchema";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,6 +52,7 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <BusinessSchema />
         <BasketProvider>
           {children}
           <PreviewSwitcher />

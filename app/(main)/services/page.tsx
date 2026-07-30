@@ -1,52 +1,11 @@
 import Link from "next/link";
 import { Section, SectionHeader, Eyebrow } from "@/components/Section";
+import { SERVICES as services } from "@/lib/business";
 import { PageHeroPhoto } from "@/components/PageHeroPhoto";
 
 // Regenerate hourly so the hero photograph rotates through the library.
 export const revalidate = 3600;
 
-const services = [
-  {
-    title: "Custom Wood Tables",
-    body:
-      "Dining, conference, kitchen, and side tables. Solid hardwood, butcher block, or live-edge slabs. Any size, any base.",
-  },
-  {
-    title: "Epoxy River Tables",
-    body:
-      "Live-edge slabs paired with deep-pour epoxy in custom tints. Centerpiece pieces that take light beautifully.",
-  },
-  {
-    title: "Live-Edge Furniture",
-    body:
-      "Desks, benches, headboards, consoles. Hand-selected slabs, finished food-safe and ready for daily use.",
-  },
-  {
-    title: "Sliding Barn Doors",
-    body:
-      "Hand-built barn doors with blacksmithed hardware. Reclaimed wood, painted, or stained to match the space.",
-  },
-  {
-    title: "Wood & Steel Stair Railings",
-    body:
-      "Welded steel and hardwood railings — modern industrial or rustic farmhouse, fabricated and installed in-house.",
-  },
-  {
-    title: "Custom Countertops",
-    body:
-      "Butcher block, end-grain, and live-edge counters for kitchens, bars, and islands. Sealed for the way you actually cook.",
-  },
-  {
-    title: "Lamps & Lighting",
-    body:
-      "Wood-and-Edison-bulb pendants, sconces, and table lamps — UL-rated wiring, finished by hand.",
-  },
-  {
-    title: "Built-Ins & Organization",
-    body:
-      "Mudroom benches, closets, shelving, kids&apos; rooms. Storage designed around how your family lives, not a catalog.",
-  },
-];
 
 export default function Services() {
   return (

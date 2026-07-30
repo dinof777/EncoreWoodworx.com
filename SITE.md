@@ -105,6 +105,7 @@ basket is only serialized when the inquiry form posts it.
 | **Checkout** | Entirely off-site. Every purchase path terminates at Etsy. There is no cart, no payment code, and no PCI surface in this repo. |
 | **Photography** | 63 owned photos in `public/photos/`, generated from the `photos/` drop folder by `npm run photos`. Etsy's CDN (`i.etsystatic.com`) still backs catalogue imagery and is the hero fallback when no owned photos exist. |
 | **Gallery** | An external Google Photos album, linked from the homepage and contact page. |
+| **Search / Google** | `components/BusinessSchema.tsx` emits LocalBusiness JSON-LD from `lib/business.ts`. **`florabrothers.com` serves this same deployment byte-for-byte**, so Google sees two identical sites and has been surfacing the wrong one — the fix is redirecting one domain, which is a brand decision, not a code change. |
 | **Email / CRM** | Google Apps Script web app writing to a Sheet + emailing a notification. See below. |
 
 ### Form intake — `/api/contact` and `/api/newsletter`
@@ -148,6 +149,8 @@ Validation before anything is delivered: email format, `name` ≤ 200 chars, `me
 | `components/BasketView.tsx`, `BasketInquiryForm.tsx`, `BasketButton.tsx`, `AddToProjectButton.tsx` | The project-basket flow |
 | `components/ContactForm.tsx`, `NewsletterForm.tsx` | Forms posting to `/api/contact` |
 | `components/PreviewSwitcher.tsx` | V1/V2/V3 pill, renders only under `/preview` |
+| `components/BusinessSchema.tsx` | LocalBusiness JSON-LD. No `address`/`telephone` — the site publishes neither, and inventing them would feed Google claims the business has not made |
+| `lib/business.ts` | Single source of truth for shop facts and the service list; the `/services` page and the schema both read it so they cannot drift |
 | `components/PageHeroPhoto.tsx` | Photo backdrop for a section hero. Renders nothing when the library is empty. Needs `isolate` on the host `<section>` — it layers at `-z-10` like the glow overlays |
 
 ## Styles
@@ -186,5 +189,7 @@ why the desktop nav switches on at `lg` rather than `md`. Layout is verified cle
 1. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
    `filter: invert(1)` and it muddies below ~48px.
 2. Test coverage. There is none today.
-3. The intake's shared secret is the only thing protecting the Sheet from anyone who finds
+3. Decide what happens to `florabrothers.com` — redirect to the canonical domain, or keep
+   as a separate brand. While both serve identical HTML, search results are split.
+4. The intake's shared secret is the only thing protecting the Sheet from anyone who finds
    the `/exec` URL. Rotate it in the script and both env locations if it is ever exposed.

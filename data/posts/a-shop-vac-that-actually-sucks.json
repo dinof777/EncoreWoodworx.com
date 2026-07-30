@@ -11,7 +11,10 @@
     "So there you have it, my friends! Everything you need to make your own shop vac that can handle an epoxy blizzard. Now go forth and conquer those sanding projects, knowing your trusty sidekick has your back. May your epoxy flow freely and your dust bunnies tremble in fear!"
   ],
   "products": [
-    { "name": "Oneida Dust Deputy", "subtitle": "Dust collection separator", "price": "$60" }
-  ],
-  "sourceUrl": "https://florabrothers.com/shop-tips/f/a-shop-vac-that-actually-sucks?blogcategory=Shop+Tools"
+    {
+      "name": "Oneida Dust Deputy",
+      "subtitle": "Dust collection separator",
+      "price": "$60"
+    }
+  ]
 }

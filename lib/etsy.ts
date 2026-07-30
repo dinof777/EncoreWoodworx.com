@@ -153,7 +153,7 @@ export async function getListings(): Promise<EtsyListing[]> {
   try {
     const res = await fetch(RSS_URL, {
       next: { revalidate: 3600, tags: ["etsy-listings"] },
-      headers: { "user-agent": "EncoreWoodworxBot/1.0 (+https://encorewoodworx.com)" },
+      headers: { "user-agent": "EncoreWoodworxBot/1.0 (+https://www.encorewoodworx.com)" },
     });
     if (!res.ok) {
       console.warn("[etsy] RSS fetch failed", res.status);

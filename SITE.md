@@ -5,6 +5,10 @@ The dev-facing companion to `/llms.txt` (which is the *external* manifest) and
 `DESIGN.md` (which is the visual system). Keep this current when routes, data
 sources, or integrations change.
 
+**Canonical host:** `https://www.encorewoodworx.com`. The apex 307s to `www`, so every URL
+the site publishes (sitemap, robots, llms.txt, `metadataBase`, schema) uses `www` — pointing
+Google at a redirecting host is a wasted hop. `florabrothers.com` 308s here, path preserved.
+
 **Stack:** Next.js 16.2.4 (App Router) · React 19.2 · Tailwind CSS v4 · Framer Motion 12 ·
 TypeScript 5. No database. Deployed on Vercel at `https://encorewoodworx.com`.
 
@@ -105,7 +109,7 @@ basket is only serialized when the inquiry form posts it.
 | **Checkout** | Entirely off-site. Every purchase path terminates at Etsy. There is no cart, no payment code, and no PCI surface in this repo. |
 | **Photography** | 63 owned photos in `public/photos/`, generated from the `photos/` drop folder by `npm run photos`. Etsy's CDN (`i.etsystatic.com`) still backs catalogue imagery and is the hero fallback when no owned photos exist. |
 | **Gallery** | An external Google Photos album, linked from the homepage and contact page. |
-| **Search / Google** | `components/BusinessSchema.tsx` emits LocalBusiness JSON-LD from `lib/business.ts`. **`florabrothers.com` serves this same deployment byte-for-byte**, so Google sees two identical sites and has been surfacing the wrong one — the fix is redirecting one domain, which is a brand decision, not a code change. |
+| **Search / Google** | `components/BusinessSchema.tsx` emits LocalBusiness JSON-LD from `lib/business.ts`. `florabrothers.com` 308-redirects to the brand domain via `next.config.ts`, retiring the legacy name. |
 | **Email / CRM** | Google Apps Script web app writing to a Sheet + emailing a notification. See below. |
 
 ### Form intake — `/api/contact` and `/api/newsletter`
@@ -189,7 +193,5 @@ why the desktop nav switches on at `lg` rather than `md`. Layout is verified cle
 1. A vector logo. `public/logo.png` is a 490 KB opaque raster; dark placements need
    `filter: invert(1)` and it muddies below ~48px.
 2. Test coverage. There is none today.
-3. Decide what happens to `florabrothers.com` — redirect to the canonical domain, or keep
-   as a separate brand. While both serve identical HTML, search results are split.
-4. The intake's shared secret is the only thing protecting the Sheet from anyone who finds
+3. The intake's shared secret is the only thing protecting the Sheet from anyone who finds
    the `/exec` URL. Rotate it in the script and both env locations if it is ever exposed.

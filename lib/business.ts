@@ -57,7 +57,7 @@ export const SERVICES: Service[] = [
 export const BUSINESS = {
   name: "Encore Woodworx",
   legalName: "Encore Woodworx, LLC",
-  url: "https://encorewoodworx.com",
+  url: "https://www.encorewoodworx.com",
   description:
     "One workshop, one pair of hands. Bespoke epoxy river tables, live-edge furniture, " +
     "sliding barn doors, custom countertops and wood-and-steel railings — every piece " +

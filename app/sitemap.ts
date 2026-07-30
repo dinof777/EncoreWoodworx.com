@@ -4,7 +4,7 @@ import { getAllPosts } from "@/lib/blog";
 
 export const revalidate = 3600;
 
-const SITE = "https://encorewoodworx.com";
+const SITE = "https://www.encorewoodworx.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [slugs, posts] = await Promise.all([getListingSlugs(), getAllPosts()]);

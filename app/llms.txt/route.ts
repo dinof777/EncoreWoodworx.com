@@ -12,7 +12,7 @@ import { getAllPosts } from "@/lib/blog";
 
 export const revalidate = 3600;
 
-const SITE = "https://encorewoodworx.com";
+const SITE = "https://www.encorewoodworx.com";
 
 /**
  * Human-readable label for each craft category, keyed by lib/etsy ListingKind.
